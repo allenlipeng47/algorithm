@@ -82,6 +82,7 @@ public class WaterJug {
                 stateStack.pop();
             }
         }// while
+        /** Output result */
         StringBuffer output = new StringBuffer();
         while(curState != null){
             output.insert(0, " -> " + curState);
