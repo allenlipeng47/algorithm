@@ -13,8 +13,8 @@ public class WeightedReservoirSampling {
             return null;
         }
         PriorityQueue<WrsElement> heap = new PriorityQueue<WrsElement>(10);
+        /** Transform weight into a double between (0,1). Put it in min heap. **/
         for(int i=0; i < items.length ; i++){
-            /** Transform weight into a double between (0,1). Put it in min heap. **/
             double key = Math.pow((Math.random()), 1/(double)items[i][1]);
             WrsElement element = new WrsElement(items[i][0], key);
             heap.add(element);
