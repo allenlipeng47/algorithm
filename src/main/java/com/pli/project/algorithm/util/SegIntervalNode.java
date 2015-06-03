@@ -1,4 +1,4 @@
-package com.pli.project.algorithm.exercise2014.util;
+package com.pli.project.algorithm.util;
 
 public class SegIntervalNode {
 	int index;
