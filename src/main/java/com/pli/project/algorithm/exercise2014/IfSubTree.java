@@ -1,7 +1,7 @@
 package com.pli.project.algorithm.exercise2014;
 
-import com.pli.project.algorithm.exercise2014.util.MyBoolean;
-import com.pli.project.algorithm.exercise2014.util.Tree;
+import com.pli.project.algorithm.util.MyBoolean;
+import com.pli.project.algorithm.util.Tree;
 
 
 public class IfSubTree {

@@ -1,7 +1,7 @@
 package com.pli.project.algorithm.exercise2014;
 
-import com.pli.project.algorithm.exercise2014.util.MyInteger;
-import com.pli.project.algorithm.exercise2014.util.Tree;
+import com.pli.project.algorithm.util.MyInteger;
+import com.pli.project.algorithm.util.Tree;
 
 /*
  * vertical traversal a binary tree

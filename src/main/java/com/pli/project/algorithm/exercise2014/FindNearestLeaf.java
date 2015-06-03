@@ -1,9 +1,9 @@
 package com.pli.project.algorithm.exercise2014;
 
 import java.util.Arrays;
-import com.pli.project.algorithm.exercise2014.util.MyBoolean;
-import com.pli.project.algorithm.exercise2014.util.MyInteger;
-import com.pli.project.algorithm.exercise2014.util.Tree;
+import com.pli.project.algorithm.util.MyBoolean;
+import com.pli.project.algorithm.util.MyInteger;
+import com.pli.project.algorithm.util.Tree;
 
 
 public class FindNearestLeaf {
