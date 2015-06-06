@@ -1,8 +1,6 @@
 package com.pli.project.algorithm.hash.rollinghash;
 
 import lombok.Getter;
-import org.junit.Test;
-
 import java.math.BigInteger;
 import java.util.LinkedList;
 
@@ -23,11 +21,11 @@ public class RollingHashQueue<E> {
     LinkedList<E> list;
 
     @Getter
-    private int hash;
+    private int rollingHash;
 
     private int magicModInverse;
 
-    RollingHashQueue(){
+    public RollingHashQueue(){
         list = new LinkedList<E>();
         magicModInverse = BigInteger.valueOf(base).modInverse(BigInteger.valueOf(q)).intValue();
     }
@@ -35,7 +33,7 @@ public class RollingHashQueue<E> {
     /** enQueue, add element to queue tail **/
     public boolean addLast(E e){
         list.addLast(e);
-        hash = ((hash * base) % q + e.hashCode()) % q;
+        rollingHash = ((rollingHash * base) % q + e.hashCode()) % q;
         magic = (magic * base) % q;
         return true;
     }
@@ -43,7 +41,7 @@ public class RollingHashQueue<E> {
     /** add element to queue head **/
     public boolean addFirst(E e){
         list.addFirst(e);
-        hash = ((magic * e.hashCode()) % q + hash ) % q;
+        rollingHash = ((magic * e.hashCode()) % q + rollingHash ) % q;
         magic = (magic * base) % q;
         return true;
     }
@@ -54,7 +52,7 @@ public class RollingHashQueue<E> {
             return null;
         }
         magic = (magic * magicModInverse) % q;
-        hash = (hash - (magic * list.get(0).hashCode()) % q + q) % q;
+        rollingHash = (rollingHash - (magic * list.get(0).hashCode()) % q + q) % q;
         E e = list.remove(0);
         return e;
     }
@@ -65,7 +63,7 @@ public class RollingHashQueue<E> {
             return null;
         }
         magic = (magic * magicModInverse) % q;
-        hash = (((hash - list.getLast().hashCode() + q) % q) * magicModInverse) % q;
+        rollingHash = (((rollingHash - list.getLast().hashCode() + q) % q) * magicModInverse) % q;
         E e = list.removeLast();
         return e;
     }
@@ -74,8 +72,27 @@ public class RollingHashQueue<E> {
         return this.hashCode();
     }
 
-    public static void main(String[] args) {
-        System.out.println("a");
+    public boolean equals(RollingHashQueue<E> queue2){
+        if(queue2==null || this.rollingHash!=queue2.rollingHash || !this.list.equals(queue2.list)){
+            return false;
+        }
+        return true;
+    }
+
+    public E getFirst(){
+        return list.getFirst();
+    }
+
+    public E getLast(){
+        return list.getLast();
+    }
+
+    public E get(int i){
+        return list.get(i);
+    }
+
+    public String toString(){
+        return list.toString();
     }
 
 }
