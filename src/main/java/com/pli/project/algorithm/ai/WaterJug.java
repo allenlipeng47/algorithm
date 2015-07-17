@@ -31,18 +31,7 @@ public class WaterJug {
         Stack<WjState> stateStack = new Stack<WjState>();
         stateStack.add(firstState);
         WjState curState = firstState;
-        /** DFS to find target result. Result is not guaranteed to be optimized
-         * Successor:
-         * If volume of 2 jugs are a, b. For each state (x, y), it has below successor state
-         * (x, y) -> (a, y) if x < a, fill first jug
-         * (x, y) -> (x, b) if b < y, fill second jug
-         * (x, y) -> (0, y) if x > 0, empty first jug
-         * (x, y) -> (x, 0) if y > 0, empty second jug
-         * (x, y) -> (a, y - (a - x)) if x + y > a, pour water from second jug to first jug
-         * (x, y) -> (x - (b - y), b) if x + y > b, pour water from first jug to second jug
-         * (x, y) -> (x + y, 0) if x + y <= a, pour water from second jug to first jug
-         * (x, y) -> (0, x + y) if x + y <= b, pour water from first jug to second jug
-         */
+        /** DFS to find target result. Result is not guaranteed to be optimized **/
         while(stateStack.size() > 0 && curState.x != target && curState.y != target){
             curState = stateStack.peek();
             WjState nextState = new WjState(0, 0, curState.step + 1, curState);
@@ -95,7 +84,7 @@ public class WaterJug {
 
     public static class WjState{
         int x, y;
-        int step;
+        int step;   //How many steps is needed in order to reach the state
         WjState pre;    //to define the state before it.
 
         public boolean posEquals(WjState state){
