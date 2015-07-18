@@ -331,7 +331,7 @@ public class DuplicateInKLength {
         return arr[point.x-k][point.y]==arr[point.x+k+1][point.y];
     }
 
-    public static boolean isContainDuplicate(int[][] arr, int k){
+    public static boolean containDuplicate(int[][] arr, int k){
         Set<Integer> hs = new HashSet<Integer>();
         /** Initialize hashset **/
         for(int i=0; i <= k/2; i++){
@@ -370,7 +370,7 @@ public class DuplicateInKLength {
                 {64, 65, 66, 67, 68, 69, 70},
                 {71, 72, 73, 74, 75, 76, 77}
         };
-        boolean result = isContainDuplicate(arr, 1);
+        boolean result = containDuplicate(arr, 1);
         System.out.println(result);
     }
 
