@@ -324,6 +324,11 @@ public class DuplicateInKLength {
         return false;
     }
 
+    /* This function is auxiliary for checkOddStep() method. Because the window shape for odd
+    length can't check if 2 elements in same column has length k. So every time when a new
+    window is generated, use this function to check if the top and bottom elements between point
+    are the same.
+    * */
     private static boolean checkTopBottom(int[][] arr, Point point, int k){
         if(point.x-k<0 || point.x+k+1>=arr.length || point.y<0 || point.y>=arr[0].length){
             return false;
