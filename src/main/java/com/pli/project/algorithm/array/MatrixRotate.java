@@ -16,31 +16,24 @@ public class MatrixRotate {
         for(int i=0; i<layerNum; i++){
             /* Each loop, is to renew each layer. Layer loops from outside to inside */
             int left = i, right = arr[0].length-1-i, top = i, bottom = arr.length-1-i;
+            int tmp = arr[top][left];
             /* From left to right*/
-            int pre = arr[top][left];
-            for(int j=left+1; j<=right; j++){
-                int tmp = pre;
-                pre = arr[top][j];
-                arr[top][j] = tmp;
+            for(int j=top; j<bottom; j++){
+                arr[j][left] = arr[j+1][left];
             }
             /* From top to bottom */
-            for(int j=top+1; j<=bottom; j++){
-                int tmp = pre;
-                pre = arr[j][right];
-                arr[j][right] = tmp;
+            for(int j=left; j<right; j++){
+                arr[bottom][j] = arr[bottom][j+1];
             }
             /* From right to left */
-            for(int j=right-1; j>=left; j--){
-                int tmp = pre;
-                pre = arr[bottom][j];
-                arr[bottom][j] = tmp;
+            for(int j=bottom; j>top; j--){
+                arr[j][right] = arr[j-1][right];
             }
             /* From bottom to top */
-            for(int j=bottom-1; j>=top; j--){
-                int tmp = pre;
-                pre = arr[j][left];
-                arr[j][left] = tmp;
+            for(int j=right; j>left; j--){
+                arr[top][j] = arr[top][j-1];
             }
+            arr[top][left+1] = tmp;
         }
         return arr;
     }
