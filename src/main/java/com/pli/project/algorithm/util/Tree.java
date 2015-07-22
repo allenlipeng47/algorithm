@@ -13,6 +13,9 @@ public class Tree{
 	public Tree right;
 	public int value;
 	public String valueString;
+	public String toString(){
+		return String.valueOf(value);
+	}
 	public static Tree getTree(){
 		Tree t18 = new Tree(18);
 		Tree t17 = new Tree(17);
