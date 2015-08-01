@@ -1,5 +1,7 @@
 package com.pli.project.algorithm.exercise2014;
 
+import junit.framework.Assert;
+
 /*
  * Suppose the pots are arranged in L[0] to L[n].
  * First player can pick either L[0] or L[n]. If
@@ -34,6 +36,7 @@ public class GetMaxGold {
 		int[][] memo = new int[gold.length][gold.length];
 		printArray(gold, 0, gold.length-1);
 		System.out.println(getMaxGold(gold, 0, gold.length-1, memo));
+		System.out.println(getMaxGold(gold));
 	}
 
 	
@@ -48,9 +51,35 @@ public class GetMaxGold {
 		int maxRight = gold[end] + Math.min(getMaxGold(gold, start, end-2, memo), getMaxGold(gold, start+1, end-1, memo));
 		memo[start][end] = Math.max(maxLeft, maxRight);
 //		printArray(gold, start, end);
-		System.out.println("start:" + start + " end:" + end + " choose:" + String.valueOf((maxLeft>maxRight)?start:end));
+		System.out.println("start:" + start + " end:" + end + " choose:" + String.valueOf((maxLeft > maxRight) ? start : end));
 		System.out.println();
 		return memo[start][end];
+	}
+
+	public static int getMaxGold(int[] gold){
+		Assert.assertNotNull(gold);
+		if(gold.length==1){
+			return gold[0];
+		}
+		if(gold.length==2){
+			return Math.max(gold[0], gold[1]);
+		}
+		int[][] memo = new int[gold.length][gold.length];
+		for(int i=0; i<gold.length; i++){
+			memo[i][i] = gold[i];
+		}
+		for(int i=0; i<gold.length-1; i++){
+			memo[i][i+1] = Math.max(gold[i], gold[i+1]);
+		}
+		for(int gap=2; gap<=gold.length-1; gap++){
+			for(int i=0; i<=gold.length-gap-1; i++){
+				int j = gap + i;
+				int maxLeft = gold[i] + Math.min(memo[i+2][j], memo[i+1][j-1]);
+				int maxRight = gold[j] + Math.min(memo[i][j-2], memo[i+1][j-1]);
+				memo[i][j] = Math.max(maxLeft, maxRight);
+			}
+		}
+		return memo[0][gold.length-1];
 	}
 	
 	public static void printArray(int[] array, int start, int end){
