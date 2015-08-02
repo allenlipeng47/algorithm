@@ -53,7 +53,7 @@ public class TreeSerializing {
     For example:
      str = "1 23 65", startPos=0,   returns 1, startPos=2
      str = "1 23 65", startPos=2,   returns 23, startPos=5
-     str = "1 23 65", startPos=2,   returns 5, startPos=-1 */
+     str = "1 23 65", startPos=5,   returns 65, startPos=-1 */
     public static int nextNum(String str, int[] startPos){
         Assert.assertNotNull(str);
         if(startPos[0]>=str.length() || startPos[0]<0) {
