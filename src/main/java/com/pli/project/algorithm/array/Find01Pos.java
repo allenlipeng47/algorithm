@@ -20,7 +20,7 @@ public class Find01Pos {
                 return validate(mat, row) ? row : -1;
             }
             else {
-                row++;
+                row = col;
             }
         }
         return validate(mat, row) ? row : -1;
@@ -66,7 +66,7 @@ public class Find01Pos {
                 {0, 1, 0, 0, 0},
                 {1, 1, 1, 1, 0},
         };
-        int res = findKthRow(arr);
+        int res = findKthRow(arr3);
         System.out.println(res);
     }
 
