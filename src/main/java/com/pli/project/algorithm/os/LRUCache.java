@@ -2,6 +2,25 @@ package com.pli.project.algorithm.os;
 
 import java.util.HashMap;
 
+
+/*
+public class SimpleLRUCache {
+    private int capacity;
+    LinkedHashMap<Object, Object> map;
+
+    public SimpleLRUCache(final int capacity){
+        this.capacity = capacity;
+
+        map = new LinkedHashMap<Object, Object>(12, 0.76f, true){
+            protected boolean removeEldestEntry(Map.Entry<Object,Object> eldest){
+                return this.size() == capacity;
+            }
+        };
+
+    }
+}
+ */
+
 /**
  * Created by lipeng on 2015/9/29.
  */
