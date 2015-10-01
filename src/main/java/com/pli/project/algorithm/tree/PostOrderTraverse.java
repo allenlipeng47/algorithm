@@ -31,7 +31,6 @@ public class PostOrderTraverse {
                 stack.add(curr.right);
             }
         } //while
-        tm.visitedMark = false;
     }
 
     public static void postOrderByThread(TreeManager tm) {
@@ -83,7 +82,6 @@ public class PostOrderTraverse {
     static class TreeManager{
         Tree tree;
         Tree postTraversalHead;
-        boolean visitedMark = true;
         public TreeManager(Tree tree){
             this.tree = tree;
             postTraversalHead = new Tree(-1);
