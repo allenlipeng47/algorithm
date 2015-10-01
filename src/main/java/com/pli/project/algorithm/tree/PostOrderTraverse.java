@@ -33,14 +33,6 @@ public class PostOrderTraverse {
         } //while
     }
 
-    public static void postOrderByThread(TreeManager tm) {
-        Tree curr = tm.postTraversalHead.successor;
-        while(curr != null) {
-            System.out.println(curr.value);
-            curr = curr.successor;
-        }
-    }
-
     public static void convertToSumTree(TreeManager tm) {
         Tree curr = tm.postTraversalHead.successor;
         while(curr != null) {
@@ -57,11 +49,19 @@ public class PostOrderTraverse {
         }
     }
 
+    public static void postOrderTraversalByThread(TreeManager tm) {
+        Tree curr = tm.postTraversalHead.successor;
+        while(curr != null) {
+            System.out.println(curr.value);
+            curr = curr.successor;
+        }
+    }
+
     public static void main(String[] args) {
         TreeManager tm = getTree2();
         buildPostOrderTraverseThread(tm);
         convertToSumTree(tm);
-        postOrderByThread(tm);
+        postOrderTraversalByThread(tm);
     }
 
     static class Tree{
