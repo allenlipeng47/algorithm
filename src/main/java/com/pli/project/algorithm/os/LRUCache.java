@@ -16,7 +16,6 @@ public class SimpleLRUCache {
                 return this.size() == capacity;
             }
         };
-
     }
 }
  */
