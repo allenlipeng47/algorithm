@@ -1,5 +1,8 @@
 package com.pli.project.algorithm.stack;
 
+import com.pli.project.algorithm.exercise2014.IntegerSet;
+
+import java.nio.file.StandardWatchEventKinds;
 import java.util.Stack;
 
 /**
@@ -7,6 +10,9 @@ import java.util.Stack;
  */
 public class MaxHistogramArea {
 
+    /*
+    This method calculate how further can each element reach to left and right side.
+     */
     public static int getMaxArea(int[] arr) {
         if(arr==null||arr.length<1) {
             return 0;
@@ -48,6 +54,28 @@ public class MaxHistogramArea {
         return maxSize;
     }
 
+    public static int getMaxArea2(int[] arr) {
+        if(arr==null||arr.length<1) {
+            return 0;
+        }
+        Stack<Integer> stack = new Stack<Integer>();
+        int maxSize = 0;
+        for(int i=0; i<arr.length; i++) {
+            while(!stack.isEmpty() && arr[stack.peek()]>arr[i]) {
+                int tp = stack.pop();
+                int currSize = arr[tp] * (stack.isEmpty() ? i : i-stack.peek()-1);
+                maxSize = Math.max(maxSize, currSize);
+            }
+            stack.push(i);
+        }
+        while(!stack.isEmpty()) {
+            int tp = stack.pop();
+            int currSize = arr[tp] * (stack.isEmpty() ? arr.length : arr.length-stack.peek()-1);
+            maxSize = Math.max(maxSize, currSize);
+        }
+        return maxSize;
+    }
+
     public static void main(String[] args) {
 //        int[] arr = {2, 3, 4, 1};
 //        int[] arr = {1, 2, 3, 4};
@@ -57,8 +85,10 @@ public class MaxHistogramArea {
 //        int[] arr = {6, 1, 2, 3, 5, 4};
 //        int[] arr = {1, 1, 1};
 //        int[] arr = {4, 5, 3, 2, 1};
-        int[] arr = {1};
-        System.out.println(getMaxArea(arr));
+//        int[] arr = {1};
+//        int[] arr = {1, 3, 5, 4, 2, 6};
+        int[] arr = {6, 2, 5, 4, 5, 6};
+        System.out.println(getMaxArea2(arr));
     }
 
 }
