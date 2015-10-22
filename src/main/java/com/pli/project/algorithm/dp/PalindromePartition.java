@@ -3,6 +3,7 @@ package com.pli.project.algorithm.dp;
 /**
  * Created by lipeng on 2015/10/21.
  * Given a string, we try to split the string to each sub-string. Each sub-string needs to be palindrome.
+ * https://leetcode.com/problems/palindrome-partitioning-ii/
  */
 public class PalindromePartition {
 
