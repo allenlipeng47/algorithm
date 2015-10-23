@@ -7,7 +7,8 @@ package com.pli.project.algorithm.dp;
  */
 public class PalindromePartition {
 
-    public static int getMinPalindromePartition(char[] chs) {
+    public static int getMinPalindromePartition(String s) {
+        char[] chs = s.toCharArray();
         int[][] arr = new int[chs.length][chs.length];
         for(int i=0; i<chs.length; i++) {
             arr[i][i] = 1;
@@ -31,7 +32,7 @@ public class PalindromePartition {
 
     public static void main(String[] args) {
         String str = "abacbdbc";
-        System.out.println(getMinPalindromePartition(str.toCharArray()));
+        System.out.println(getMinPalindromePartition(str));
     }
 
 }
