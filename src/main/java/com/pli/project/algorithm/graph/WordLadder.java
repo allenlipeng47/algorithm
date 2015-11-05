@@ -7,35 +7,6 @@ import java.util.*;
  */
 public class WordLadder {
 
-    public static class Node{
-        public String node;
-        HashMap<Node, Integer> neighor = new HashMap<Node, Integer>();
-
-        public Node(String node) {
-            this.node = node;
-        }
-
-        public void addNeighbor(Node node, int cost) {
-            neighor.put(node, cost);
-        }
-
-        public boolean equals(Object obj) {
-            if(obj==null) {
-                return false;
-            }
-            if(this==obj) {
-                return true;
-            }
-            if(obj instanceof Node) {
-                Node objNode = (Node)obj;
-                return this.node.equals(objNode.node);
-            }
-            else {
-                return false;
-            }
-        }
-    }
-
     public static int getWordLadder(String start, String end, String[] dict) {
         dict = Arrays.copyOf(dict, dict.length+2);
         dict[dict.length-2] = start;
@@ -78,6 +49,35 @@ public class WordLadder {
         }
         else {
             return false;
+        }
+    }
+
+    public static class Node{
+        public String node;
+        HashMap<Node, Integer> neighor = new HashMap<Node, Integer>();
+
+        public Node(String node) {
+            this.node = node;
+        }
+
+        public void addNeighbor(Node node, int cost) {
+            neighor.put(node, cost);
+        }
+
+        public boolean equals(Object obj) {
+            if(obj==null) {
+                return false;
+            }
+            if(this==obj) {
+                return true;
+            }
+            if(obj instanceof Node) {
+                Node objNode = (Node)obj;
+                return this.node.equals(objNode.node);
+            }
+            else {
+                return false;
+            }
         }
     }
 
