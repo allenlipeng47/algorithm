@@ -10,8 +10,8 @@ import java.util.Queue;
 public class MinConsecutiveSubStr {
 
     public static void main(String[] args) {
-        Queue queue = new Queue("adobecodebanc", "abc");
-        System.out.println(queue.getResult());
+        DoubleLinkedList list = new DoubleLinkedList("adobecodebanc", "abc");
+        System.out.println(list.getResult());
     }
 
     public static class Element {
@@ -20,7 +20,7 @@ public class MinConsecutiveSubStr {
         public int pos = -1;
     }
 
-    public static class Queue {
+    public static class DoubleLinkedList {
         Element[] queue = new Element[255];
         String s;
 
@@ -34,7 +34,7 @@ public class MinConsecutiveSubStr {
         Element head;
         Element tail;
 
-        public Queue(String s, String t) {
+        public DoubleLinkedList(String s, String t) {
             this.s = s;
             Element pre = head = queue[t.charAt(0)-'a'] = new Element();
             for(int i=1; i<t.length(); i++) {
