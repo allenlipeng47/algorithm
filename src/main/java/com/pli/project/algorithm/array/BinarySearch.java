@@ -61,10 +61,64 @@ public class BinarySearch {
         return -1;
     }
 
+    /*
+    For array 1, 2, 3, 4, 4, 4, 5, 5, 6. And given 4
+    Should return position 5
+     */
+    public static int getRightOpen(int[] arr, int n) {
+        if(arr==null||arr.length==0) {
+            return -1;
+        }
+        if(arr[arr.length-1]<=n) {
+            return arr.length-1;
+        }
+        int left=0, right=arr.length-2, mid;
+        while(left<=right) {
+            mid = (left + right) >> 1;
+            if(arr[mid]>n) {
+                right = mid - 1;
+            }
+            else if(arr[mid+1]>n) {
+                return mid;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    /*
+    For array 1, 2, 3, 4, 4, 4, 5, 5, 6. And given 4
+    Should return position 2
+     */
+    public static int getRightClose(int[] arr, int n) {
+        if(arr==null||arr.length==0) {
+            return -1;
+        }
+        if(arr[arr.length-1]<n) {
+            return arr.length-1;
+        }
+        int left=0, right=arr.length-2, mid;
+        while(left<=right) {
+            mid = (left + right) >> 1;
+            if(arr[mid]>=n) {
+                right = mid - 1;
+            }
+            else if(arr[mid+1]>=n) {
+                return mid;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
-//        int[] arr = {1, 1, 1, 1, 2, 2, 2, 2, 5, 6};
-        int[] arr = {1, 2, 5, 7, 9, 10};
-        System.out.println(getLeftClose(arr, 20));
+        int[] arr = {1, 1, 1, 1, 2, 2, 2, 2, 5, 6};
+//        int[] arr = {1, 2, 5, 7, 9, 10};
+        System.out.println(getRightClose(arr, 4));
     }
 
 }
