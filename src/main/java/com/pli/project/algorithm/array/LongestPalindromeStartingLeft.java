@@ -7,6 +7,7 @@ public class LongestPalindromeStartingLeft {
 
     public static int longestPalindromeStartingLeft(String str) {
         int left=0, right=str.length()-1;
+        int[] next = getNext(str);
         while(right>=0) {
             if(str.charAt(left)==str.charAt(right)) {
                 left++;
@@ -16,10 +17,34 @@ public class LongestPalindromeStartingLeft {
                 right--;
             }
             else {
-                left = 0;
+                left = next[left];
             }
         }
         return left;
+    }
+
+    public static int[] getNext(String t) {
+        if(t==null) {
+            return null;
+        }
+        int[] next = new int[t.length()];
+        if(t.length()<3) {
+            return next;
+        }
+        int i=0, j=1;
+        int len = 0;
+        while(j<t.length()-1) {
+            if(t.charAt(i)==t.charAt(j)) {
+                next[j+1] = ++len;
+                i++;
+            }
+            else {
+                i = 0;
+                len = 0;
+            }
+            j++;
+        }
+        return next;
     }
 
     public static void main(String[] args) {
@@ -27,6 +52,7 @@ public class LongestPalindromeStartingLeft {
 //        String str = "abbaabba";
 //        String str = "cabbacabba";
 //        String str = "abcaaba";
+//        String str = "aaabaaaaa";
         System.out.println(longestPalindromeStartingLeft(str));
     }
 
