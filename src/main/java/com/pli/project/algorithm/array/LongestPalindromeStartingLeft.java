@@ -5,6 +5,26 @@ package com.pli.project.algorithm.array;
  */
 public class LongestPalindromeStartingLeft {
 
+    public static int longestPalindromeStartingLeftNaive(String str) {
+        str = str + new StringBuilder(str).reverse().toString();
+        System.out.println(str);
+        int i=0, j=str.length() / 2;
+        int[] next = getNext(str);
+        while(j<str.length()) {
+            if(str.charAt(i)==str.charAt(j)) {
+                i++;
+                j++;
+            }
+            else if(i==0) {
+                j++;
+            }
+            else {
+                i = next[i];
+            }
+        }
+        return i;
+    }
+
     public static int longestPalindromeStartingLeft(String str) {
         int left=0, right=str.length()-1;
         int[] next = getNext(str);
@@ -48,12 +68,13 @@ public class LongestPalindromeStartingLeft {
     }
 
     public static void main(String[] args) {
-        String str = "abbaaba";
+//        String str = "abbaaba";
 //        String str = "abbaabba";
 //        String str = "cabbacabba";
 //        String str = "abcaaba";
-//        String str = "aaabaaaaa";
-        System.out.println(longestPalindromeStartingLeft(str));
+        String str = "aaabaaaaa";
+//        System.out.println(longestPalindromeStartingLeft(str));
+        System.out.println(longestPalindromeStartingLeftNaive(str));
     }
 
 }
