@@ -2,6 +2,12 @@ package com.pli.project.algorithm.array;
 
 /**
  * Created by lipeng on 2015/11/19.
+ *
+ Given a array consisted of only 0 or 1, and a number N.
+ We have N times to flip 0 to 1 in array. Find the longest continuous 1 after we flipped the N zero elements. Rotation is allowed.
+
+ For example, 100100111000, n=2, the best flip is 100111111000, return 6
+ 10001101101, n=2, the best flip is 10001111111, return 8(rotation is allowed)
  */
 public class LongestContinuousOne {
 
