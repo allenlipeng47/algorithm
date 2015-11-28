@@ -37,7 +37,7 @@ public class LongestPalindromeStartingLeft {
                 right--;
             }
             else {
-                left = next[left];
+                left = next[left];  //if this one is not changed, code won't pass "aaabaaaaa".
             }
         }
         return left;
