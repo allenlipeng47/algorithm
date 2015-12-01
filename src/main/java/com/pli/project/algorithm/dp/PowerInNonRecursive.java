@@ -44,6 +44,21 @@ public class PowerInNonRecursive {
         return result;
     }
 
+    /*
+    According to formula https://en.wikipedia.org/wiki/Exponentiation#Efficient_computation_with_integer_exponents
+     */
+    public static int power3(int a, int n)  {
+        int result = 0;
+        while(n>0) {
+            if((n&0x1)==1) {
+                result = result * a;
+            }
+            result = result * result;
+            n = n >> 1;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(power(2, 0));
     }
