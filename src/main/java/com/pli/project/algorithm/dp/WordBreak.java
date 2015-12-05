@@ -46,10 +46,24 @@ public class WordBreak {
         return items[items.length-1].list;
     }
 
+    public static boolean wordBreak2(String[] dict, String str) {
+        boolean[] rec = new boolean[str.length()+1];
+        rec[0] = true;
+        for(int i=1; i<str.length(); i++) {
+            if(!rec[i-1])
+                continue;
+            for(String word:dict) {
+                if(word.length()+i<=rec.length && str.substring(i-1, i+word.length()-1).equals(word))
+                    rec[i+word.length()-1] = true;
+            }
+        }
+        return rec[rec.length-1];
+    }
+
     public static void main(String[] args) {
         String[] dict = {"cat", "cats", "and", "dog", "sand"};
         String str = "catsanddog";
-        System.out.println(wordBreak(dict, str));
+        System.out.println(wordBreak2(dict, str));
     }
 
 }
