@@ -49,7 +49,7 @@ public class WordBreak {
     public static boolean wordBreak2(String[] dict, String str) {
         boolean[] rec = new boolean[str.length()+1];
         rec[0] = true;
-        for(int i=1; i<str.length(); i++) {
+        for(int i=1; i<rec.length; i++) {
             if(!rec[i-1])
                 continue;
             for(String word:dict) {
@@ -61,7 +61,9 @@ public class WordBreak {
     }
 
     public static void main(String[] args) {
-        String[] dict = {"cat", "cats", "and", "dog", "sand"};
+//        String[] dict = {"cat", "cats", "and", "dog", "sand"};
+//        String str = "catsanddog";
+        String[] dict = {"cat", "do", "g", "sand"};
         String str = "catsanddog";
         System.out.println(wordBreak2(dict, str));
     }
