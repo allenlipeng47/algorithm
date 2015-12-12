@@ -2,6 +2,14 @@ package com.pli.project.algorithm.recursion;
 
 /**
  * Created by lipeng on 2015/12/9.
+ * recursive descendant.
+ * Fixed code and passed all test cases in leetcode.
+ * The formulas are below:
+ * G=P|PeQ P=SR	// P is the real number with sign
+ * Q=SI	// Q is the integer with sign
+ * S=+|-|empty		//S is sign
+ * R=D|.D|D.|D.D	//Real number
+ * I=D		//D is integer without decimal point or sign)
  */
 public class IsNumber {
 
