@@ -1,9 +1,11 @@
 package com.pli.project.algorithm.tree;
 
 import com.pli.project.algorithm.exercise2014.IntegerSet;
+import org.omg.PortableInterceptor.ACTIVE;
 
 /**
  * Created by lipeng on 2015/12/12.
+ * Online suffix tree check: http://www.allisons.org/ll/AlgDS/Tree/Suffix/
  */
 public class SuffixTree {
 
@@ -30,6 +32,7 @@ public class SuffixTree {
         int remaining = 0;
         for(int i=0; i<str.length(); i++) {
             remaining++;
+            preInternalNode = null; // suffix link only link to each internal node in same phase. Reset at the beginning of each phase.
             while (remaining>0) {
                 if(activePoint.activeLength==0) {   // check root
                     char ch = str.charAt(i);
@@ -62,15 +65,20 @@ public class SuffixTree {
                 }
                 // not able to find str.charAt(i) in next position of active point, should split
                 SuffixNode internalNode = split(activePoint, i); // this is the splitted node generated
-                if(!(activePoint.activePoint==root && preActivePoint!=root && preActivePoint!=null)) { // if pre is root and current active point is root, then we do nothing. Or we change activePoint. See video 41:47
+//                if(activePoint.activePoint==root && preActivePoint!=root && preActivePoint!=null) { // if pre is root and current active point is root, then we do nothing. Or we change activePoint. See video 41:47
+//                    preActivePoint = root;
+//                }
+//                else {
                     if (activePoint.activePoint == root) {   //
                         activePoint.activeEdge++;
                         activePoint.activeLength--;
+                        if(activePoint.activeLength>0)
+                            activePoint = activePoint.updateActivePoint(activePoint, str);  //update active Point
                     } else {
                         preActivePoint = activePoint.activePoint;
                         activePoint.activePoint = activePoint.activePoint.suffixLink;
                     }
-                }
+//                }
                 //update preSuffixNode
                 internalNode.suffixLink = root;
                 if (preInternalNode != null) {
@@ -146,9 +154,9 @@ public class SuffixTree {
     }
 
     public static class ActivePoint {
-        public static SuffixNode activePoint;
-        public static int activeEdge;
-        public static int activeLength;
+        public SuffixNode activePoint;
+        public int activeEdge;
+        public int activeLength;
         public ActivePoint(SuffixNode activePoint, int activeEdge, int activeLength) {
             this.activePoint = activePoint;
             this.activeEdge = activeEdge;
@@ -159,17 +167,36 @@ public class SuffixTree {
             reset();
         }
 
-        public static void reset() {
+        public void reset() {
             activePoint = root;
             activeEdge = -1;
             activeLength = 0;
         }
+
+        // when a internal node is created and active point is root,
+        public ActivePoint updateActivePoint(ActivePoint point, String str) {
+            int newLength = 0;
+            SuffixEdge edge = point.activePoint.edges[str.charAt(point.activeEdge)-'0'];
+            for(int i=0, pos=point.activeEdge; i<point.activeLength; i++, pos++) {
+                if(edge.end==-1 || newLength <= edge.end-edge.start)
+                    newLength++;
+                else {
+                    edge = edge.child.edges[str.charAt(pos)-'0'];
+                    point.activeEdge = edge.start;
+                    point.activePoint = edge.parent;
+                    newLength = 1;
+                }
+            }
+            point.activeLength = newLength;
+            return point;
+        }
     }
 
     public static void main(String[] args) {
-        str = "xyzxyaxyz|";
+//        str = "xyzxyaxyz|";
+        str = "mississi|";
         SuffixNode node = build(str);
-
+        System.out.println();
     }
 
     public static void test11() {
@@ -197,5 +224,27 @@ public class SuffixTree {
         edge.child = subNode;
         ActivePoint activePoint = new ActivePoint(node, 3, 4);
         System.out.println(search(activePoint, 'f'));
+    }
+
+    public static void testEdgeMove() {
+        str = "mississi$";
+        SuffixNode root = new SuffixNode();
+        SuffixNode l = new SuffixNode();
+        SuffixEdge e1 = new SuffixEdge(root, 0);
+        SuffixEdge e2 = new SuffixEdge(root, 1);
+        SuffixEdge e3 = new SuffixEdge(root, 2); e3.end = 2;
+        SuffixEdge e4 = new SuffixEdge(l, 4);
+        SuffixEdge e5 = new SuffixEdge(l, 3);
+        e3.child = l;
+        root.addEdge(str.charAt(0), e1);
+        root.addEdge(str.charAt(1), e2);
+        root.addEdge(str.charAt(2), e3);
+        l.addEdge(str.charAt(4), e4);
+        l.addEdge(str.charAt(3), e5);
+        ActivePoint point = new ActivePoint(root, 2, 1);
+        point = point.updateActivePoint(point, str);
+        System.out.println();
+
+
     }
 }
