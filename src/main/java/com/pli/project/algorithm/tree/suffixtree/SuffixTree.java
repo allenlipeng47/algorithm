@@ -150,7 +150,7 @@ public class SuffixTree {
             return -1;
         int len = 1;
         for(int i=0; i<t.length(); i++) {
-            if(edge.start+len-1>=str.length() || str.charAt(edge.start+len-1)!=t.charAt(i))
+            if(edge==null || edge.start+len-1>=str.length() || str.charAt(edge.start+len-1)!=t.charAt(i))
                 return -1;
             if(edge.start+len==edge.end+1 && edge.end!=-1 && i+1<t.length()) { // can still check at edge
                 edge = edge.child.edges[t.charAt(i+1)-'0'];
@@ -164,11 +164,11 @@ public class SuffixTree {
     }
 
     public static void main(String[] args) {
-//        str = "xyzxyaxyz|";
-//        str = "mississi|";
-        String str = "mississippi|";
+        String str = "xyzxyaxyz";
+//        str = "mississi";
+//        String str = "mississippi";
         SuffixTree tree = new SuffixTree(str);
-        System.out.println(tree.match("sipa"));
+        System.out.println(tree.match("axyz"));
     }
 
     public static void test11() {

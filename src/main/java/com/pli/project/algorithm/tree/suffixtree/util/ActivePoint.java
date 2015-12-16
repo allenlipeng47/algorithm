@@ -27,20 +27,17 @@ public class ActivePoint {
 
     // when a internal node is created and active point is root,
     public ActivePoint updateActivePoint(ActivePoint point, String str) {
-        int newLength = 0;
-        SuffixEdge edge = point.activePoint.edges[str.charAt(point.activeEdge)-'0'];
-        for(int i=0, pos=point.activeEdge; i<point.activeLength; i++, pos++) {
-            if(edge.end==-1 || newLength <= edge.end-edge.start)
-                newLength++;
-            else {
-                edge = edge.child.edges[str.charAt(pos)-'0'];
-                point.activeEdge = edge.start;
-                point.activePoint = edge.parent;
-                newLength = 1;
-            }
+        int pos = point.activeEdge;
+        SuffixEdge edge = point.activePoint.edges[str.charAt(pos)-'0'];
+        while (true) {
+            if(edge.end==-1 || point.activeLength<=edge.end-edge.start+1)
+                return point;
+            point.activeLength -= edge.end - edge.start + 1;
+            pos = pos + edge.end - edge.start + 1;
+            edge = edge.child.edges[str.charAt(pos)-'0'];
+            point.activePoint = edge.parent;
+            point.activeEdge = edge.start;
         }
-        point.activeLength = newLength;
-        return point;
     }
 
 
