@@ -142,7 +142,7 @@ public class SuffixTree {
         }
     }
 
-    public int match(String t) {
+    public int indexOf(String t) {
         if(t==null||t.length()<1)
             return -1;
         SuffixEdge edge = root.edges[t.charAt(0)-'0'];
@@ -168,55 +168,7 @@ public class SuffixTree {
 //        str = "mississi";
 //        String str = "mississippi";
         SuffixTree tree = new SuffixTree(str);
-        System.out.println(tree.match("axyz"));
-    }
-
-    public static void test11() {
-        String str = "01234567890123456";
-        SuffixNode node = new SuffixNode();
-        SuffixEdge edge = new SuffixEdge(node, 'a');
-        SuffixNode childNode = new SuffixNode();
-        edge.child = childNode;
-        edge.child.addEdge('4', new SuffixEdge(childNode, 4) );
-        edge.start = 3;
-        edge.end = -1;
-//        SuffixEdge newEdge = split(edge, 2, 9);
-    }
-
-    public static void test2() {
-        String str = "abcdefghifklmnopq";
-        SuffixNode node = new SuffixNode();
-        SuffixEdge edge = new SuffixEdge(node, 3);
-        edge.end = 5;
-        node.addEdge(str.charAt(3), edge);
-        // sub edge
-        SuffixNode subNode = new SuffixNode();
-        SuffixEdge subEdge = new SuffixEdge(subNode, 9);
-        subNode.addEdge(str.charAt(9), subEdge);
-        edge.child = subNode;
-        ActivePoint activePoint = new ActivePoint(node, 3, 4);
-//        System.out.println(SuffixTree.search(activePoint, 'f'));
-    }
-
-    public static void testEdgeMove() {
-        String str = "mississi$";
-        SuffixTree tree = new SuffixTree("mississi$");
-        SuffixNode root = new SuffixNode();
-        SuffixNode l = new SuffixNode();
-        SuffixEdge e1 = new SuffixEdge(root, 0);
-        SuffixEdge e2 = new SuffixEdge(root, 1);
-        SuffixEdge e3 = new SuffixEdge(root, 2); e3.end = 2;
-        SuffixEdge e4 = new SuffixEdge(l, 4);
-        SuffixEdge e5 = new SuffixEdge(l, 3);
-        e3.child = l;
-        root.addEdge(str.charAt(0), e1);
-        root.addEdge(str.charAt(1), e2);
-        root.addEdge(str.charAt(2), e3);
-        l.addEdge(str.charAt(4), e4);
-        l.addEdge(str.charAt(3), e5);
-        ActivePoint point = new ActivePoint(root, 2, 1);
-        point = point.updateActivePoint(point, str);
-        System.out.println();
+        System.out.println(tree.indexOf("axyz"));
     }
 
 }
