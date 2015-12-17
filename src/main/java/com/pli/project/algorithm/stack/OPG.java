@@ -23,15 +23,15 @@ public class OPG {
     public static final int POUND = 6;
 
     /*
-        0   1   2   3   4   5   6
-        +   -   *   /   (   )   #
-    +   <   <   <   <   >   <   na
-    -   <   <   <   <   >   <   na
-    *   >   >   <   <   >   <   na
-    /   >   >   <   <   >   <   na
-    (   >   >   >   >   >   na  na
-    )   <   <   <   <   =   <   na
-    #   <   <   <   <   na  <   na
+         0   1   2   3   4   5   6
+         +   -   *   /   (   )   #
+  0  +   <   <   <   <   >   <   na
+  1  -   <   <   <   <   >   <   na
+  2  *   >   >   <   <   >   <   na
+  3  /   >   >   <   <   >   <   na
+  4  (   >   >   >   >   >   na  na
+  5  )   <   <   <   <   =   <   na
+  6  #   <   <   <   <   na  <   na
      */
     public static final int[][] opMatrix= {
             {LESS, LESS, LESS, LESS, GREATER, LESS, WRONG},
