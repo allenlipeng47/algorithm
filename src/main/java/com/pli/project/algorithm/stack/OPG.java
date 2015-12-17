@@ -89,23 +89,22 @@ public class OPG {
         int nextNum = -1;
         int pos = 0;
         while (!(opStack.isEmpty() && nextOp==POUND) && pos<str.length()) {
-            if(str.charAt(pos)>='0' && str.charAt(pos)<='9') {
+            if(str.charAt(pos)>='0' && str.charAt(pos)<='9') {  // next is a number
                 nextNum = getNum(str, pos);
                 numStack.push(nextNum);
                 int numLength = String.valueOf(nextNum).length();
                 if((pos>=1 && str.charAt(pos-1)==')') || (str.charAt(pos+numLength)=='('))
                     return Integer.MIN_VALUE;   // avoid (3+1)3, and 3(1+2) exception
                 pos += String.valueOf(nextNum).length();
-
             }
-            else if(opStack.isEmpty()) {
+            else if(opStack.isEmpty()) {    // next is an operator and stack is empty, then push to operator stack
                 opStack.push(getOperator(str.charAt(pos++)));
             }
             else {
                 int topOp = opStack.peek();
                 nextOp = getOperator(str.charAt(pos));
                 switch (opMatrix[nextOp][topOp]) {
-                    case LESS:
+                    case LESS:  // next operator is less than top operator, then pop number and operator stack to calculate
                         if(numStack.size()<2)
                             return Integer.MIN_VALUE;
                         int b = numStack.pop();
@@ -114,11 +113,11 @@ public class OPG {
                         numStack.push(value);
                         opStack.pop();
                         break;
-                    case GREATER:
+                    case GREATER:   // next operator is greater than top operator, then push to operator stack
                         opStack.push(nextOp);
                         pos++;
                         break;
-                    case EQUAL:
+                    case EQUAL: // only parenthesis has equal, in this way pop operator stack and move pos
                         opStack.pop();
                         pos++;
                         break;
@@ -130,6 +129,7 @@ public class OPG {
         return numStack.pop();
     }
 
+    // function to get number from start position. String =abc123d, start=3, return 123
     public static int getNum(String str, int start) {
         int end;
         for(end=start; end<str.length() && str.charAt(end)>='0' && str.charAt(end)<='9'; end++);
