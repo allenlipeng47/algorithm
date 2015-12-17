@@ -20,7 +20,7 @@ public class SimpleRegularExpression {
             // because char after j is *, so we should decide where to skip * in reg
             if (matchHelper(str, reg, i, j + 2)) {  // consider * is 0 times
                 return true;
-            } else {    // consider * happens from 1 and more times
+            } else {    // consider * happens from 1, 2 and more times
                 for (; i < str.length() && (str.charAt(i) == reg.charAt(j) || reg.charAt(j) == '.'); i++)
                     if (matchHelper(str, reg, i + 1, j + 2))
                         return true;
