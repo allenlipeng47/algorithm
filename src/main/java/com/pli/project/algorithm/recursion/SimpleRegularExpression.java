@@ -6,7 +6,7 @@ package com.pli.project.algorithm.recursion;
 public class SimpleRegularExpression {
 
     public static boolean isMatch(String str, String reg) {
-        if(str==null || reg==null || str.length()<1 || reg.length()<1)
+        if(str==null || reg==null)
             return false;
         return matchHelper(str, reg, 0, 0);
     }
@@ -14,7 +14,7 @@ public class SimpleRegularExpression {
     public static boolean matchHelper(String str, String reg, int i, int j) {
         if(i==str.length() && j==reg.length())
             return true;
-        if(i>=str.length() || j>=reg.length())
+        if((i>=str.length() && str.length()>0) || j>=reg.length())
             return false;
         if(j<reg.length()-1 && reg.charAt(j + 1)=='*') {
             // because char after j is *, so we should decide where to skip * in reg
@@ -32,7 +32,7 @@ public class SimpleRegularExpression {
     }
 
     public static void main(String[] args) {
-        System.out.println(isMatch("aab", "a*ab*"));
+        System.out.println(isMatch("", ".*"));
     }
 
 }
