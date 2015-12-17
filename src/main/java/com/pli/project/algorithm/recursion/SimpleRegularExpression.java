@@ -1,46 +1,38 @@
 package com.pli.project.algorithm.recursion;
 
 /**
- * Created by lipeng on 2015/10/27.
+ * Created by lipeng on 2015/12/16.
  */
 public class SimpleRegularExpression {
 
-    public static boolean matchReg(String str, String reg) {
-        return matchRegUtil(str, 0, reg, 0);
+    public static boolean isMatch(String str, String reg) {
+        if(str==null || reg==null || str.length()<1 || reg.length()<1)
+            return false;
+        return matchHelper(str, reg, 0, 0);
     }
 
-    public static boolean matchRegUtil(String str, int strPos, String reg, int regPos) {
-        if(strPos>=str.length() && regPos>=reg.length()) {
+    public static boolean matchHelper(String str, String reg, int i, int j) {
+        if(i==str.length() && j==reg.length())
             return true;
-        }
-        else if(regPos>=reg.length()) {
+        if(i>=str.length() || j>=reg.length())
             return false;
-        }
-        else if(strPos>=str.length()) {
-            for(int i=regPos; i<reg.length(); i++) {
-                if(reg.charAt(i)!='*') {
-                    return false;
-                }
+        if(j<reg.length()-1 && reg.charAt(j + 1)=='*') {
+            // because char after j is *, so we should decide where to skip * in reg
+            if (matchHelper(str, reg, i, j + 2)) {  // consider * is 0 times
+                return true;
+            } else {    // consider * happens from 1 and more times
+                for (; i < str.length() && (str.charAt(i) == reg.charAt(j) || reg.charAt(j) == '.'); i++)
+                    if (matchHelper(str, reg, i + 1, j + 2))
+                        return true;
             }
+        }
+        if((str.charAt(i)==reg.charAt(j) || reg.charAt(j)=='.') && matchHelper(str, reg, i+1, j+1))
             return true;
-        }
-        if(reg.charAt(regPos)==str.charAt(strPos)||reg.charAt(regPos)=='?') {
-            return matchRegUtil(str, strPos+1, reg, regPos+1);
-        }
-        else if(reg.charAt(regPos)=='*'){
-            for(int i=strPos-1; i<str.length(); i++) {
-                if(matchRegUtil(str, i+1, reg, regPos+1)) {
-                    return true;
-                }
-            }
-        }
         return false;
     }
 
     public static void main(String[] args) {
-        String str = "abc";
-        String reg = "ab?e";
-        System.out.println(matchReg(str, reg));
+        System.out.println(isMatch("aab", "a*ab*"));
     }
 
 }
