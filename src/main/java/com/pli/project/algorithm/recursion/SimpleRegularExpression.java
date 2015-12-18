@@ -22,11 +22,11 @@ public class SimpleRegularExpression {
                 for (; i < str.length() && (str.charAt(i) == reg.charAt(j) || reg.charAt(j) == '.'); i++)
                     if (matchHelper(str, reg, i + 1, j + 2))
                         return true;
-        return (str.charAt(i)==reg.charAt(j) || reg.charAt(j)=='.') && matchHelper(str, reg, i+1, j+1);
+        return (i<str.length() && str.charAt(i)==reg.charAt(j) || reg.charAt(j)=='.') && matchHelper(str, reg, i+1, j+1);
     }
 
     public static void main(String[] args) {
-        System.out.println(isMatch("ab", "c*abd"));
+        System.out.println(isMatch("abc", ".*fgfdg"));
     }
 
 }
