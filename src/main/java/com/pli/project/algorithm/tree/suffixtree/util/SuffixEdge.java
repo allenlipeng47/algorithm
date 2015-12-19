@@ -5,7 +5,7 @@ package com.pli.project.algorithm.tree.suffixtree.util;
  */
 public class SuffixEdge {
 
-    public int start;
+    public int start;   // start position of string on edge
 
     public int end; // -1 means it has no out-going node, it is an end edge
 
