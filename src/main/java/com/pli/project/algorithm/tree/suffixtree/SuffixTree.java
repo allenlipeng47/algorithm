@@ -1,8 +1,11 @@
 package com.pli.project.algorithm.tree.suffixtree;
 
 import com.pli.project.algorithm.tree.suffixtree.util.ActivePoint;
+import com.pli.project.algorithm.tree.suffixtree.util.LcsRec;
 import com.pli.project.algorithm.tree.suffixtree.util.SuffixEdge;
 import com.pli.project.algorithm.tree.suffixtree.util.SuffixNode;
+
+import javax.naming.CompositeName;
 
 /**
  * Created by lipeng on 2015/12/12.
@@ -15,6 +18,15 @@ public class SuffixTree {
     public String str;
 
     public SuffixNode root;
+
+    private int secondPos = -1;
+
+    public SuffixTree(String str1, String str2) {
+        str = str1 + "{" + str2 + "}";
+        build(str);
+        updateEdgePos();
+        secondPos = str1.length()+1;
+    }
 
     public SuffixTree(String str) {
         this.str = str;
@@ -163,12 +175,68 @@ public class SuffixTree {
         return edge.strStart;
     }
 
+    public String getLcs() {
+        LcsRec result = new LcsRec();
+        for(SuffixEdge edge:root.edges) {
+            if(edge==null)
+                continue;
+            LcsRec curRec = getLcsHelper(edge);
+            if(curRec.length>result.length) {
+                result = null;
+                result = curRec;
+            }
+        }
+        System.out.println(str);
+        System.out.println("position in first string: " + result.firstPos + "\t" + "position in second string: " + result.secondPos);
+        return str.substring(result.firstPos, result.firstPos+result.length);
+    }
+
+    private LcsRec getLcsHelper(SuffixEdge edge) {
+        LcsRec resultRec = new LcsRec();
+        if(edge.child!=null) {  // if it is an internal node
+            boolean foundInFirst = false;
+            boolean foundInSecond = false;
+            for(SuffixEdge nextEdge:edge.child.edges) {
+                if(nextEdge==null)
+                    continue;
+                LcsRec curRec = getLcsHelper(nextEdge);
+                if(resultRec==null && curRec.length>0 || resultRec.length<curRec.length) {
+                    resultRec = curRec;
+                    continue;
+                }
+                if(resultRec.length>0) {    // resultRec.length>0 means it found a good internal node in the children edges. Then no need to find further.
+                    continue;
+                }
+                if(!foundInFirst && curRec.firstPos>=0 && curRec.firstPos<secondPos) {
+                    resultRec.firstPos = nextEdge.start;
+                    foundInFirst = true;
+                }
+                if(!foundInSecond && curRec.secondPos>=secondPos && curRec.secondPos<str.length()) {
+                    resultRec.secondPos = nextEdge.start;
+                    foundInSecond = true;
+                }
+            } // for
+            if(foundInFirst && foundInSecond)
+                resultRec.length = edge.end - edge.strStart + 1;
+        }
+        else {  // leaf node, check which part the substring belongs to
+            resultRec = new LcsRec();
+            if(edge.strStart<secondPos) {   // substring belongs to first part
+                resultRec.firstPos = edge.strStart;
+            }
+            else {  // substring belongs to second part
+                resultRec.secondPos = edge.strStart;
+            }
+        }
+        return resultRec;
+    }
+
     public static void main(String[] args) {
-        String str = "xyzxyaxyz";
-//        str = "mississi";
-//        String str = "mississippi";
-        SuffixTree tree = new SuffixTree(str);
-        System.out.println(tree.indexOf("axyz"));
+//        String str = "xyzxyaxyz";
+        String str1 = "banbna";
+        String str2 = "gabnabna";
+        SuffixTree tree = new SuffixTree(str1, str2);
+        System.out.println(tree.getLcs());
     }
 
 }
