@@ -242,11 +242,15 @@ public class SuffixTree {
     }
 
     public static void main(String[] args) {
-        String str = "xyzxyaxyz";
-//        str = "mississi";
-//        String str = "mississippi";
-        SuffixTree tree = new SuffixTree("ABCBA", "BABCA");
-        System.out.println(tree.lcs());
+        // find the position of substring
+        SuffixTree tree1 = new SuffixTree("mississippi");
+        System.out.println(tree1.indexOf("sipp"));
+
+        // find the longest common substring
+        SuffixTree tree2 = new SuffixTree("ABCBA", "BABCA");
+        System.out.println(tree2.lcs());
+
+        // find the longest palindrome in a string
         System.out.println(longestPalindrome("abaccddccefe"));
     }
 
