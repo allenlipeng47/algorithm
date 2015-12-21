@@ -234,19 +234,18 @@ public class SuffixTree {
         }
     }
 
+    public static String longestPalindrome(String str) {
+        SuffixTree tree = new SuffixTree(str, new StringBuilder(str).reverse().toString());
+        return tree.lcs();
+    }
+
     public static void main(String[] args) {
         String str = "xyzxyaxyz";
 //        str = "mississi";
 //        String str = "mississippi";
         SuffixTree tree = new SuffixTree("ABCBA", "BABCA");
         System.out.println(tree.lcs());
-
         System.out.println(longestPalindrome("abaccddccefe"));
-    }
-
-    public static String longestPalindrome(String str) {
-        SuffixTree tree = new SuffixTree(str, new StringBuilder(str).reverse().toString());
-        return tree.lcs();
     }
 
 }
