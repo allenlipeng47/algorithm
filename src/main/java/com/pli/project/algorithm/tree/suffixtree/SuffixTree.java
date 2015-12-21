@@ -207,7 +207,7 @@ public class SuffixTree {
                 firstPos = currRec.firstPos;
             else
                 secondPos = currRec.secondPos;
-//            currRec = null;
+            currRec = null; // release the unused reference. For garbage collection.
         }
         if(resultRec!=null)
             return resultRec;
@@ -219,6 +219,7 @@ public class SuffixTree {
             return new LcsRec(-1, secondPos, 0);
     }
 
+    // when finding the lcs, this structure is used to return the result.
     public class LcsRec {
         public int firstPos;    // position of longest common substring in first string.
         public int secondPos;   // position of longest common substring in second string.
