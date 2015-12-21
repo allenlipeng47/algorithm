@@ -181,6 +181,8 @@ public class SuffixTree {
             if((result==null&&curRec.len>0) || (result!=null&&curRec.len>result.len))
                 result = curRec;
         }
+        if(result==null)
+            return "";
 //        System.out.println(str);
 //        System.out.println("Lcs at first string: " + result.firstPos + ", second string: " + result.secondPos);
         return str.substring(result.firstPos, result.firstPos+result.len);
