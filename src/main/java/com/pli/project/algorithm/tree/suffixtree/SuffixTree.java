@@ -1,11 +1,8 @@
 package com.pli.project.algorithm.tree.suffixtree;
 
 import com.pli.project.algorithm.tree.suffixtree.util.ActivePoint;
-import com.pli.project.algorithm.tree.suffixtree.util.LcsRec;
 import com.pli.project.algorithm.tree.suffixtree.util.SuffixEdge;
 import com.pli.project.algorithm.tree.suffixtree.util.SuffixNode;
-
-import javax.naming.CompositeName;
 
 /**
  * Created by lipeng on 2015/12/12.
@@ -19,19 +16,19 @@ public class SuffixTree {
 
     public SuffixNode root;
 
-    private int secondPos = -1;
-
-    public SuffixTree(String str1, String str2) {
-        str = str1 + "{" + str2 + "}";
-        build(str);
-        updateEdgePos();
-        secondPos = str1.length()+1;
-    }
+    public int str2ndPos; // the position of the second word
 
     public SuffixTree(String str) {
         this.str = str;
         build(str);
         updateEdgePos();
+    }
+
+    public SuffixTree(String str1, String str2) {
+        this.str = str1 + "{" + str2 + "}";
+        build(str);
+        updateEdgePos();
+        str2ndPos = str1.length()+1;
     }
 
     private SuffixNode build(String str) {
@@ -175,68 +172,87 @@ public class SuffixTree {
         return edge.strStart;
     }
 
-    public String getLcs() {
-        LcsRec result = new LcsRec();
+    public String lcs() {
+        LcsRec result = null;
         for(SuffixEdge edge:root.edges) {
             if(edge==null)
                 continue;
-            LcsRec curRec = getLcsHelper(edge);
-            if(curRec.length>result.length) {
-                result = null;
+            LcsRec curRec = lcsHelper(edge);
+            if((result==null&&curRec.len>0) || (result!=null&&curRec.len>result.len))
                 result = curRec;
-            }
         }
-        System.out.println(str);
-        System.out.println("position in first string: " + result.firstPos + "\t" + "position in second string: " + result.secondPos);
-        return str.substring(result.firstPos, result.firstPos+result.length);
+        if(result==null)
+            return "";
+//        System.out.println(str);
+//        System.out.println("Lcs at first string: " + result.firstPos + ", second string: " + result.secondPos);
+        return str.substring(result.firstPos, result.firstPos+result.len);
     }
 
-    private LcsRec getLcsHelper(SuffixEdge edge) {
-        LcsRec resultRec = new LcsRec();
-        if(edge.child!=null) {  // if it is an internal node
-            boolean foundInFirst = false;
-            boolean foundInSecond = false;
-            for(SuffixEdge nextEdge:edge.child.edges) {
-                if(nextEdge==null)
-                    continue;
-                LcsRec curRec = getLcsHelper(nextEdge);
-                if(resultRec==null && curRec.length>0 || resultRec.length<curRec.length) {
-                    resultRec = curRec;
-                    continue;
-                }
-                if(resultRec.length>0) {    // resultRec.length>0 means it found a good internal node in the children edges. Then no need to find further.
-                    continue;
-                }
-                if(!foundInFirst && curRec.firstPos>=0 && curRec.firstPos<secondPos) {
-                    resultRec.firstPos = nextEdge.start;
-                    foundInFirst = true;
-                }
-                if(!foundInSecond && curRec.secondPos>=secondPos && curRec.secondPos<str.length()) {
-                    resultRec.secondPos = nextEdge.start;
-                    foundInSecond = true;
-                }
-            } // for
-            if(foundInFirst && foundInSecond)
-                resultRec.length = edge.end - edge.strStart + 1;
+    public LcsRec lcsHelper(SuffixEdge edge) {
+        if(edge.child==null) {
+            if(edge.start< str2ndPos)
+                return new LcsRec(edge.strStart, -1, 0);
+            else
+                return new LcsRec(-1, edge.strStart, 0);
         }
-        else {  // leaf node, check which part the substring belongs to
-            resultRec = new LcsRec();
-            if(edge.strStart<secondPos) {   // substring belongs to first part
-                resultRec.firstPos = edge.strStart;
-            }
-            else {  // substring belongs to second part
-                resultRec.secondPos = edge.strStart;
-            }
+        LcsRec resultRec = null;
+        int firstPos=-1, secondPos=-1;
+        for(SuffixEdge currEdge:edge.child.edges) {
+            if(currEdge==null)
+                continue;
+            LcsRec currRec = lcsHelper(currEdge);
+            if((resultRec==null&&currRec.len>0) || resultRec!=null&&resultRec.len<currRec.len)
+                resultRec = currRec;
+            else if(currRec.firstPos>=0)
+                firstPos = currRec.firstPos;
+            else
+                secondPos = currRec.secondPos;
+            currRec = null; // release the unused reference. For garbage collection.
         }
-        return resultRec;
+        if(resultRec!=null)
+            return resultRec;
+        else if(firstPos>=0 && secondPos>=0)
+            return new LcsRec(firstPos, secondPos, edge.end-edge.strStart+1);
+        else if(firstPos>=0)
+            return new LcsRec(firstPos, -1, 0);
+        else
+            return new LcsRec(-1, secondPos, 0);
+    }
+
+    // when finding the lcs, this structure is used to return the result.
+    public class LcsRec {
+        public int firstPos;    // position of longest common substring in first string.
+        public int secondPos;   // position of longest common substring in second string.
+        public int len; // length of longest common substring
+        public LcsRec() {
+            firstPos = -1;
+            secondPos = -1;
+            len = 0;
+        }
+
+        public LcsRec(int firstPos, int secondPos, int len) {
+            this.firstPos = firstPos;
+            this.secondPos = secondPos;
+            this.len = len;
+        }
+    }
+
+    public static String longestPalindrome(String str) {
+        SuffixTree tree = new SuffixTree(str, new StringBuilder(str).reverse().toString());
+        return tree.lcs();
     }
 
     public static void main(String[] args) {
-//        String str = "xyzxyaxyz";
-        String str1 = "banbna";
-        String str2 = "gabnabna";
-        SuffixTree tree = new SuffixTree(str1, str2);
-        System.out.println(tree.getLcs());
+        // find the position of substring
+        SuffixTree tree1 = new SuffixTree("mississippi");
+        System.out.println(tree1.indexOf("sipp"));
+
+        // find the longest common substring
+        SuffixTree tree2 = new SuffixTree("ABCBA", "BABCA");
+        System.out.println(tree2.lcs());
+
+        // find the longest palindrome in a string
+        System.out.println(longestPalindrome("abaccddccefe"));
     }
 
 }
