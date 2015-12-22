@@ -49,7 +49,7 @@ public class ProducerConsumer {
             while (true) {
                 try {
                     full.acquire();
-                    mutex.acquire();
+                    mutex.acquire();    // each time, only one thread can modify full or empty semaphore
                     if (empty.availablePermits() < 5)
                         empty.release();
                     System.out.println("consumer" + Thread.currentThread().getId() + ", full " + full.availablePermits() + ", empty " + empty.availablePermits());
