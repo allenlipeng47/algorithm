@@ -33,7 +33,7 @@ public class DeepIterator {
         Object currElem = null;
         Iterator currItr;
         // while loop until found a currElem which is not Collection.
-        while ((currItr=s.peek())!=null && ((currElem=(Object)(currItr.next())) instanceof Collection)) {
+        while ((currItr=s.peek())!=null && (currElem=currItr.next()) instanceof Collection) {
             if(!currItr.hasNext())
                 s.pop();    // each time, make sure the top element always has next
             s.push(((Collection)currElem).iterator());
