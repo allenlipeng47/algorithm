@@ -3,9 +3,9 @@ package com.pli.project.algorithm.recursion;
 /**
  * Created by lipeng on 2015/12/16.
  *
- If reg.charAt[j] is not ¡®.¡¯ or ¡®*¡¯, dp[i][j]=dp[i-1][j-1] && reg.charAt(i)==str.chartAt(j)
- If reg.charAt[j]==¡®.¡¯, dp[i][j]=dp[i-1][j-1]
- If reg.charAt[j]==¡®*¡¯,
+ If reg.charAt[j] is not "." or "*", dp[i][j]=dp[i-1][j-1] && reg.charAt(i)==str.chartAt(j)
+ If reg.charAt[j]==".", dp[i][j]=dp[i-1][j-1]
+ If reg.charAt[j]=="*",
     (1)if dp[i-2][j] is true, then dp[i][j]=true. This considers * has 0 times.
     (2)If str[i-1]==true, move from dp[i][j] to right until str[j]!=reg[i-1]. This considers * has 1, 2, or more times.
  */
