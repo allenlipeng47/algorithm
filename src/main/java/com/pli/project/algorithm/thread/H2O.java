@@ -4,6 +4,8 @@ import java.util.concurrent.Semaphore;
 
 /**
  * Created by pli on 12/22/2015.
+ * H2O problem. There are several H factories producing H, several O factories producing O. Once there are 2 Hs and 1 Os, it
+ * can generate a drop of water H2O. Make a multi-thread for this problem
  */
 public class H2O {
 
