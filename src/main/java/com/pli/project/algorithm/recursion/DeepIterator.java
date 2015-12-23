@@ -7,7 +7,7 @@ import java.util.Stack;
 
 /**
  * Created by lipeng on 2015/12/22.
- * Write an Iterator that takes a nested(deep) list and flattens it out. For e.g. List A = {1, 2, {3, 4, 5, {6, 7}, {8,9}}, 10} When you call
+ * Write an Iterator that takes a nested(deep) list and flattens it out. For e.g. Collection A = {1, 2, {3, 4, 5, {6, 7}, {8,9}}, 10} When you call
  DeepIterator it = new DeepIterator(A) ;
  while(it.hasNext()){
     System.out.println(it.next);
