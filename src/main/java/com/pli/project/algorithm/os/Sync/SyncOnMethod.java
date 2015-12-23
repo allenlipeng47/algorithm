@@ -4,7 +4,7 @@ package com.pli.project.algorithm.os.Sync;
  * Created by lipeng on 2015/12/21.
  */
 
-class PrintDemo {
+class PrintDemo2 {
 
     public synchronized void print() {
         for(int i=0; i<100; i++) {
