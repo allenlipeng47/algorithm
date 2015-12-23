@@ -1,0 +1,7 @@
+In Java, mutex can be done by Object synchronization or method synchronization.
+When more than one thread call same method or object, and if there is no synchronization, then there is no order guarantee.
+If we add synchronization on Object we use or method, then the object or method can be visited mutually exclusive.
+
+NoSync.java shows an example when there is no mutex setup. So, there print 0 is in a mess.
+SyncOnMethod uses synchronization on same method. So same method is visited mutually.
+SyncOnVariable uses synchronization on same object, which is PrintDemo. So this object is visited mutually.
