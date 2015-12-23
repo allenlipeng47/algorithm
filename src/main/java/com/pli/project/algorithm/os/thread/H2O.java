@@ -1,4 +1,4 @@
-package com.pli.project.algorithm.thread;
+package com.pli.project.algorithm.os.thread;
 
 import java.util.concurrent.Semaphore;
 

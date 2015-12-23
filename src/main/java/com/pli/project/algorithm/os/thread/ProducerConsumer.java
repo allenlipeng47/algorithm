@@ -1,6 +1,4 @@
-package com.pli.project.algorithm.thread;
-
-import sun.awt.Mutex;
+package com.pli.project.algorithm.os.thread;
 
 import java.util.concurrent.Semaphore;
 
