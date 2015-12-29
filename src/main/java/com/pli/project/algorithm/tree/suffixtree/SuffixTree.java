@@ -19,8 +19,8 @@ public class SuffixTree {
     public int str2ndPos; // the position of the second word
 
     public SuffixTree(String str) {
-        this.str = str;
-        build(str);
+        this.str = str + "|";   // we don't add the terminal, suffix tree won't pass for "ATCGATCGA"
+        build(this.str);
         updateEdgePos();
     }
 
@@ -219,11 +219,48 @@ public class SuffixTree {
             return new LcsRec(-1, secondPos, 0);
     }
 
+    public String lrs() {
+        LrsRec result = null;
+        for(SuffixEdge edge:root.edges) {
+            if(edge==null)
+                continue;
+            LrsRec curRec = lrsHelper(edge);
+            if(curRec==null)
+                continue;
+            if((result==null&&curRec.len>0) || (result!=null&&curRec.len>result.len))
+                result = curRec;
+        }
+        if(result==null)
+            return "";
+        // if want to return all lrs positions, print result.edge.child.edges[]
+        return str.substring(result.startPos, result.startPos+result.len);
+    }
+
+    public LrsRec lrsHelper(SuffixEdge edge) {
+        if(edge.child==null)
+            return null;    // child edge, return null
+        LrsRec resultRec = null;
+        for(SuffixEdge currEdge:edge.child.edges) {
+            if(currEdge==null)
+                continue;
+            LrsRec currRec = lrsHelper(currEdge);
+            if(currRec==null)
+                continue;
+            if((resultRec==null&&currRec.len>0) || resultRec!=null&&resultRec.len<currRec.len)
+                resultRec = currRec;
+            currRec = null; // release the unused reference. For garbage collection.
+        }
+        if(resultRec!=null)
+            return resultRec;
+        return new LrsRec(edge.strStart, edge.end-edge.strStart+1, edge);
+    }
+
     // when finding the lcs, this structure is used to return the result.
-    public class LcsRec {
+    private class LcsRec {
         public int firstPos;    // position of longest common substring in first string.
         public int secondPos;   // position of longest common substring in second string.
         public int len; // length of longest common substring
+
         public LcsRec() {
             firstPos = -1;
             secondPos = -1;
@@ -235,6 +272,26 @@ public class SuffixTree {
             this.secondPos = secondPos;
             this.len = len;
         }
+    }
+
+    // the helper class for longest repeated substrig
+    private class LrsRec {
+
+        public int startPos;
+        public int len;
+        public SuffixEdge edge;
+
+        public LrsRec() {
+            startPos = -1;
+            len = -1;
+        }
+
+        public LrsRec(int startPos, int len, SuffixEdge edge) {
+            this.startPos = startPos;
+            this.len = len;
+            this.edge = edge;
+        }
+
     }
 
     public static String longestPalindrome(String str) {
@@ -253,6 +310,10 @@ public class SuffixTree {
 
         // find the longest palindrome in a string
         System.out.println(longestPalindrome("abaccddccefe"));
+
+        // find the longest repeated substring
+        SuffixTree tree3 = new SuffixTree("ATCGATCGA");
+        System.out.println(tree3.lrs());
     }
 
 }
