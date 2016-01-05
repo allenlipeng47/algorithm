@@ -37,7 +37,7 @@ public class CountSmallerNumberAfterSelf {
                 count++;
                 recs[k++] = right[r++];
             }
-            else {
+            else {  // if right side is small, update num and merge to recs.
                 left[l].num += count;
                 recs[k++] = left[l++];
             }
