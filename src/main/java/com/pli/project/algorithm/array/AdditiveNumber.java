@@ -19,7 +19,7 @@ public class AdditiveNumber {
     //for str, given first number is [0,...,i], second number is [i+1,...,j]. return true if this string is additive number by these 2 start number
     public static boolean isValid(String str, int i, int j) {
         // if number is greater than 0, and starts with 0, return false. such as 012, 04. But 0 is valid
-        if(str.charAt(i + 1) == '0' && j - i != 1 || i > 0 && str.charAt(0) == '0')
+        if(str.charAt(i + 1) == '0' && j - i > 1 || i > 0 && str.charAt(0) == '0')
             return false;
         int start = 0, n = str.length();
         while (j < n - 1) {
