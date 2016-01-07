@@ -8,7 +8,7 @@ public class AdditiveNumber {
 
     public static boolean isAdditiveNumber(String str) {
         int n = str.length(), mid = n >> 1;
-        for(int len1 = 1; len1 < mid + 1; len1++)
+        for(int len1 = 1; len1 < mid + 1; len1++)   // define first 2 number length
             for(int len2 = 1; n - len1 - len2 >= Math.max(len1, len2); len2++)
                 if(isValid(str, len1 - 1, len1 + len2 - 1))
                     return true;
