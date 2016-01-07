@@ -9,6 +9,7 @@ import java.util.Stack;
  * Created by lipeng on 2015/12/30.
  * leetcode https://leetcode.com/problems/create-maximum-number/
  * Solution: http://algobox.org/2015/12/24/create-maximum-number/
+ * This code passed oj.
  */
 public class CreateMaximumNumber2 {
 
