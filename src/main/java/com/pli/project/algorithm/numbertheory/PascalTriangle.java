@@ -17,9 +17,8 @@ public class PascalTriangle {
         if(rowIndex == 0)
             return list;
         for(int m = 1; m < rowIndex + 1; m++) {
-            long pre = list.get(list.size() - 1);
-            long curr = pre * (rowIndex - m + 1) / m;
-            list.add((int)curr);
+            int pre = list.get(list.size() - 1);
+            list.add(pre / m * (rowIndex - m + 1));
         }
         return list;
     }
