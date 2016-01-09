@@ -18,11 +18,62 @@ public class SegmentTree {
             numOfNode = 1;
         else
             numOfNode = (int)Math.pow(2, height + 1);
-        nodes = new Node[numOfNode];
+        nodes = new Node[numOfNode + 1];
     }
 
     private void build(int v, int from, int to) {
+        Node node = nodes[v];
+        if(contain(from, to, node.from, node.to)) {
+            node.sum = num[element(v)] * node.size;
+            node.min = num[element(v)];
+        }
+        if(node.size == 1)
+            return;
+        if(overlap(from, to, node.from, node.to)) {
+            int left = v * 2, right = left + 1;
+            build(left, from, to);
+            build(right, from, to);
+            node.sum = nodes[left].sum + nodes[right].sum;
+            node.min = Math.min(nodes[left].min, nodes[right].min);
+        }
+    }
 
+    public int querySum(int i, int j) {
+
+        return -1;
+    }
+
+    public int querySum(int v, int from, int to) {
+        Node node = nodes[v];
+        int sum = 0;
+        if(contain(from, to, node.from, node.to)) {
+//            sum =
+        }
+        return -1;
+    }
+
+    // propagate the val to
+    private void propagate(int v, int val) {
+        Node node = nodes[v];
+        if(node.size == 1)
+            return;
+        int left = v * 2, right = left + 1;
+        nodes[left].pendingVal = nodes[left].pendingVal == null ? val : nodes[left].pendingVal + val;
+        nodes[right].pendingVal = nodes[right].pendingVal == null ? val : nodes[right].pendingVal + val;
+    }
+
+    private void update(int v) {
+        Node node = nodes[v];
+        if(node.pendingVal != null) {
+            node.min += node.pendingVal;
+            node.sum += node.pendingVal * node.size;
+            propagate(v, node.pendingVal);
+            node.pendingVal = null;
+        }
+    }
+
+    private int element(int v) {
+        return num[v - 1];
     }
 
     // return true if range1 contains range2. Assume from1 <= to1, from2 <= to2
@@ -45,11 +96,11 @@ public class SegmentTree {
 
 
     private static class Node {
-        int value, from, to;
+        int value, from, to, size, min, sum;
         Integer pendingVal;
 
         public Node(int value, int from, int to) {
-            this.value = value; this.from = from; this.to = to;
+            this.value = value; this.from = from; this.to = to; this.size = from - to + 1;
         }
     }
 
