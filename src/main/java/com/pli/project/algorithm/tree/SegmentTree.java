@@ -2,7 +2,7 @@ package com.pli.project.algorithm.tree;
 
 /**
  * Created by lipeng on 2016/1/8.
- * Implemented by lazy propagation
+ * Lazy propagation
  */
 public class SegmentTree {
 
