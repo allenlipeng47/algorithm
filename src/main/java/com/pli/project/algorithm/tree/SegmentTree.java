@@ -49,10 +49,7 @@ public class SegmentTree {
             return 0;
         if(overlap(from, to, node.from, node.to)) {
             propagate(v, node.pendingVal);
-            int sum = 0;
-            sum += querySum(v * 2, from, to);
-            sum += querySum(v * 2 + 1, from, to);
-            return sum;
+            return querySum(v * 2, from, to) + querySum(v * 2 + 1, from, to);
         }
         return 0;
     }
@@ -67,12 +64,12 @@ public class SegmentTree {
             return node.min;
         }
         if(node.size == 1)
-            return 0;
+            return Integer.MAX_VALUE;
         if(overlap(from, to, node.from, node.to)) {
             propagate(v, node.pendingVal);
-            return queryMin(v * 2, from, to) + queryMin(v * 2 + 1, from, to);
+            return Math.min(queryMin(v * 2, from, to), queryMin(v * 2 + 1, from, to));
         }
-        return 0;
+        return Integer.MAX_VALUE;
     }
 
     // range[from,...,to] add value
@@ -205,7 +202,8 @@ public class SegmentTree {
         tree.update(0, 2, 1);
         tree.update(1, 1, 2);
         tree.update(3, 4, 1);
-        System.out.println(tree.queryMin(2, 3));
+        System.out.println(tree.querySum(2, 3));
+        System.out.println(tree.queryMin(0, 4));
     }
 
 }
