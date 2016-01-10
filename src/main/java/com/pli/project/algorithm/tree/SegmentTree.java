@@ -7,10 +7,8 @@ package com.pli.project.algorithm.tree;
 public class SegmentTree {
 
     Node[] nodes;
-    int[] num;
 
     public SegmentTree(int[] num) {
-        this.num = num;
         // calculate how many nodes does tree need to build segment tree. First calculate tree height, then number of nodes.
         int height = (int)(Math.log(num.length - 1) / Math.log(2)) + 1,  numOfNode;
         if(height == 0)
@@ -18,19 +16,19 @@ public class SegmentTree {
         else
             numOfNode = (int)Math.pow(2, height + 1);
         nodes = new Node[numOfNode + 1];
-        build(1, 1, num.length);
+        build(num, 1, 1, num.length);
     }
 
     // recursively build segment tree
-    private void build(int v, int from, int to) {
+    private void build(int []num, int v, int from, int to) {
         Node node = nodes[v] = new Node(v, from, to);
         if(node.size == 1) {
-            node.sum = node.min = element(from);
+            node.sum = node.min = num[from - 1];
         }
         else {
             int mid = from + ((to - from) >> 1);
-            build(v * 2, from, mid);
-            build(v * 2 + 1, mid + 1, to);
+            build(num, v * 2, from, mid);
+            build(num, v * 2 + 1, mid + 1, to);
             node.sum = nodes[v * 2].sum + nodes[v * 2 + 1].sum;
             node.min = Math.min(nodes[v * 2].min, nodes[v * 2 + 1].min);
         }
@@ -117,10 +115,6 @@ public class SegmentTree {
             propagate(v, node.pendingVal);
             node.pendingVal = null;
         }
-    }
-
-    private int element(int v) {
-        return num[v - 1];
     }
 
     // return true if range1 contains range2. Assume from1 <= to1, from2 <= to2
