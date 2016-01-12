@@ -4,13 +4,13 @@ package com.pli.project.algorithm.tree;
  * Created by lipeng on 2016/1/11.
  * https://leetcode.com/problems/range-sum-query-mutable/
  */
-public class NumArray {
+public class BinaryIndexedTree {
 
     int[] tree;
     int[] nums;
     int n;
 
-    public NumArray(int[] nums) {
+    public BinaryIndexedTree(int[] nums) {
         this.nums = nums;
         n = nums.length;
         tree = new int[n + 1];
@@ -49,7 +49,7 @@ public class NumArray {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4, 5};
-        NumArray tree = new NumArray(nums);
+        BinaryIndexedTree tree = new BinaryIndexedTree(nums);
 //        tree.update(2, 0);
         System.out.println(tree.sumRange(1, 2));
     }
