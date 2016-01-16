@@ -20,14 +20,16 @@ public class EvenOddList {
     public static ListNode oddEvenList(ListNode head) {
         if(head == null || head.next == null)
             return head;
-        ListNode odd = head, even = head.next, curr = head.next.next;
+        ListNode odd = head, even = head.next, curr = head.next.next;   // initial odd, even and curr position
         while (curr != null) {
+            // swap odd.next and curr. Put odd number to front
             even.next = curr.next;
             curr.next = odd.next;
             odd.next = curr;
             odd = curr;
             if(even.next == null)
                 break;
+            // move even list
             even = even.next;
             curr = even.next;
         }
