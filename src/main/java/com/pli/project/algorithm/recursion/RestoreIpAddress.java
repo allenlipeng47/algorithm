@@ -8,7 +8,13 @@ import java.util.List;
 
 /**
  * Created by lipeng on 2016/1/17.
+ * Given "25525511135", return
+ [
+ "255.255.11.135",
+ "255.255.111.35"
+ ]
  * http://www.lintcode.com/en/problem/restore-ip-addresses/
+ *
  */
 public class RestoreIpAddress {
 
