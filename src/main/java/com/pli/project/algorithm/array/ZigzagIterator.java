@@ -9,25 +9,25 @@ import java.util.List;
  */
 public class ZigzagIterator {
 
-    Iterator<Integer> v1, v2, currList;
+    Iterator<Integer> v1, v2, currItr;
 
     public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
-        this.v1 = this.currList = v1.iterator();
+        this.v1 = this.currItr = v1.iterator();
         this.v2 = v2.iterator();
     }
 
     public int next() {
         int ans = 0;
-        if (currList.hasNext())
-            ans = currList.next();
-        Iterator<Integer> anotherList = (currList == v1) ? v2 : v1;
+        if (currItr.hasNext())
+            ans = currItr.next();
+        Iterator<Integer> anotherList = (currItr == v1) ? v2 : v1;
         if (anotherList.hasNext())
-            currList = anotherList;
+            currItr = anotherList;
         return ans;
     }
 
     public boolean hasNext() {
-        return currList.hasNext();
+        return currItr.hasNext();
     }
 
     public static void main(String[] args) {
