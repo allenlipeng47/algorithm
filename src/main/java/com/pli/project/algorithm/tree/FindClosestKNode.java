@@ -27,7 +27,7 @@ public class FindClosestKNode {
         if (root == null)
             return;
         closestKValuesHelper(root.left, target, k, list);
-        if (list.size() < k)
+        if (list.size() < k)    // keep adding element when size hasn't reach k
             list.add(root.val);
         else {
             // diff measure how big difference the window is different from the target value
