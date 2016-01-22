@@ -2,6 +2,7 @@ package com.pli.project.algorithm.dp;
 
 /**
  * Created by lipeng on 2016/1/21.
+ * http://www.lintcode.com/en/problem/unique-paths-ii/
  */
 public class NumOfPath {
 
