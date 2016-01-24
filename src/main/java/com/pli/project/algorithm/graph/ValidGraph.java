@@ -6,6 +6,8 @@ import java.util.Set;
 /**
  * Created by lipeng on 2016/1/22.
  * http://www.lintcode.com/en/problem/graph-valid-tree/
+ * Solution, merge each edge. If no circle found and finally only one set
+ * exists, then, it is a valid tree.
  */
 public class ValidGraph {
 
