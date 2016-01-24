@@ -26,14 +26,14 @@ public class SingleNumberIII {
         return ans;
     }
 
-    // xor solution.
+    // xor solution. Assume a, b are the number which appears only 1 time.
     public static int[] singleNumber(int[] nums) {
         int xor = 0, n = nums.length;
-        for (int num : nums)
+        for (int num : nums)    // get the xor = a ^ b.
             xor ^= num;
-        int lowBit = xor & (-xor);
+        int lowBit = xor & (-xor);  // get the lowest 1 in xor
         int[] ans = new int[2];
-        for (int num : nums) {
+        for (int num : nums) {  // loop again, divide result into 2 groups
             if ((num & lowBit) == 0)
                 ans[0] ^= num;
             else
