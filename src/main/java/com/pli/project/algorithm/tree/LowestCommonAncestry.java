@@ -22,9 +22,6 @@ public class LowestCommonAncestry {
         if (left != null && right != null) {
             return root;
         }
-        if (left == null && right == null) {
-            return null;
-        }
         if (left != null) {
             return left;
         }
