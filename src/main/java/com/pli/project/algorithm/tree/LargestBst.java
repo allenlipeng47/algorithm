@@ -45,8 +45,8 @@ public class LargestBst {
         if (leftInvalid || rightInvalid) {
             return new Triplet(Math.max(left.max, right.max), Math.min(left.min, right.min), -Math.max(Math.abs(left.ans), Math.abs(right.ans)));
         }
-        int min = node.left == null ? node.val : left.min;  // if left node is null, should use node.val
-        int max = node.right == null ? node.val : right.max;    // if right node is null, should use node.val
+        int min = (node.left == null) ? node.val : left.min;  // if left node is null, should use node.val
+        int max = (node.right == null) ? node.val : right.max;    // if right node is null, should use node.val
         return new Triplet(max, min, left.ans + right.ans + 1);
     }
 
