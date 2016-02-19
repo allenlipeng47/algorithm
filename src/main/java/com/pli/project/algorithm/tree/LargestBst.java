@@ -38,13 +38,15 @@ public class LargestBst {
         }
         Triplet left = largestBstHelper(node.left);
         Triplet right = largestBstHelper(node.right);
+        // left subtree is not valid because either left subtree is no more a BST, or left.max is greater than node.val
         boolean leftInvalid = left.ans < 0 || (left.ans > 0 && left.max >= node.val);
+        // right subtree is not valid because either right subtree is no more a BST, or right.min is less than node.val
         boolean rightInvalid = right.ans < 0 || (right.ans > 0 && right.min <= node.val);
         if (leftInvalid || rightInvalid) {
             return new Triplet(Math.max(left.max, right.max), Math.min(left.min, right.min), -Math.max(Math.abs(left.ans), Math.abs(right.ans)));
         }
-        int min = node.left == null ? node.val : left.min;
-        int max = node.right == null ? node.val : right.max;
+        int min = node.left == null ? node.val : left.min;  // if left node is null, should use node.val
+        int max = node.right == null ? node.val : right.max;    // if right node is null, should use node.val
         return new Triplet(max, min, left.ans + right.ans + 1);
     }
 
