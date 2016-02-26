@@ -7,24 +7,19 @@ package com.pli.project.algorithm.numbertheory;
 public class SelfCrossing {
 
     public static boolean isSelfCrossing(int[] x) {
-        if (x == null || x.length < 4) {
+        if (x == null || x.length <= 3) {
             return false;
         }
-        if (x[3] >= x[1] && x[2] <= x[0]) {
-            return true;
-        }
-        for (int i = 4; i < x.length; i++) {
-            if (x[i - 1] <= x[i - 3]) {
-                if (x[i - 2] <= x[i - 4]) {
-                    if (x[i] >= x[i - 2]) {
-                        return true;
-                    }
-                }
-                else {
-                    if (x[i] + x[i - 4] >= x[i - 2]) {
-                        return true;
-                    }
-                }
+        for (int i = 3; i < x.length; i++) {
+            if (x[i - 1] <= x[i - 3] && x[i] >= x[i - 2]) {
+                return true;
+            }
+            else if (i >= 4 && x[i - 1] == x[i - 3] && x[i] + x[i - 4] >= x[i - 2]) {
+                return true;
+            }
+            else if (i >= 5 && x[i - 1] <= x[i - 3] && x[i - 2] >= x[i - 4]
+                    && x[i] + x[i - 4] >= x[i - 2] && x[i - 5] + x[i - 1] >= x[i - 3]) {
+                return true;
             }
         }
         return false;
@@ -33,7 +28,11 @@ public class SelfCrossing {
     public static void main(String[] args) {
 //        int[] arr = {1,1,2,1,1};
 //        int[] arr = {1,2,2,2};
-        int[] arr = {1,2,2,3, 4};
+//        int[] arr = {1,1,3,2,1,1};
+//        int[] arr = {1,1,3,2,1,1};
+//        int[] arr = {3, 3, 4, 2, 2};
+//        int[] arr = {1,1,2,2,3,3,4,4,10,4,4,3,3,2,2,1,1};
+        int[] arr = {1,1,2,2,5,2,2,1,1};
         System.out.println(isSelfCrossing(arr));
     }
 
