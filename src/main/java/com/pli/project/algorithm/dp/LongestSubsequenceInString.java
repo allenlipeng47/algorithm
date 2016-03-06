@@ -12,7 +12,10 @@ public class LongestSubsequenceInString {
         int[][] dp = new int[len][len];
         for (int i = 1; i < len; i++) { // initial first row and first column
             if (str.charAt(0) == str.charAt(i)) {
-                dp[0][i] = dp[i][0] = 1;
+                for (int j = i; j < len; j++) {
+                    dp[0][j] = dp[j][0] = 1;
+                }
+                break;
             }
         }
         for (int i = 1; i < len; i++) {
@@ -29,7 +32,7 @@ public class LongestSubsequenceInString {
 
 
     public static void main(String[] args) {
-        String str = "aabcdbcd";
+        String str = "bcdbcd";
         System.out.println(longestSubsequence(str));
     }
 
