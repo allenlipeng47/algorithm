@@ -3,6 +3,7 @@ package com.pli.project.algorithm.dp;
 /**
  * Created by pli on 3/5/2016.
  * http://blueocean-penn.blogspot.com/2015/02/find-repeating-sub-sequences-in-string.html
+ * A variation of LCS problem. The key is that if i==j, then don't count.
  */
 public class LongestSubsequenceInString {
 
