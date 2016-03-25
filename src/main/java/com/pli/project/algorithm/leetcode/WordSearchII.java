@@ -16,7 +16,7 @@ public class WordSearchII {
 
     class Trie {
         Trie[] next = new Trie[26];
-        List<String> words = new ArrayList<>();
+        String word;
     }
 
     private void addWord(Trie trie, String word) {
@@ -27,7 +27,7 @@ public class WordSearchII {
             }
             trie = trie.next[ch - 'a'];
         }
-        trie.words.add(word);
+        trie.word = word;
     }
 
     public List<String> findWords(char[][] board, String[] words) {
@@ -51,12 +51,8 @@ public class WordSearchII {
             return ;
         }
         trie = trie.next[board[i][j] - 'a'];
-        if (trie.words.size() > 0) {
-            for (String w : trie.words) {
-                if (!ans.contains(w)) {
-                    ans.add(w);
-                }
-            }
+        if (trie.word != null && !ans.contains(trie.word)) {
+            ans.add(trie.word);
         }
         used[i][j] = true;
         dfs(ans, board, trie,  i - 1, j, used);
