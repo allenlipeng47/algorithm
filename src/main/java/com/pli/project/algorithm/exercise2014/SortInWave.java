@@ -7,7 +7,7 @@ public class SortInWave {
 	
 	
 	public static void main(String[] args) {
-		int[] array = {2,1,3,4,5};
+		int[] array = {1, 2, 3, 4, 5, 6, 7};
 		sortInWave(array);
 		System.out.println(Arrays.toString(array));
 		
@@ -20,8 +20,8 @@ public class SortInWave {
 		if(array==null||array.length<=1){
 			return;
 		}
-		for(int i=0;i<array.length;i+=2){
-			if(i>0&&array[i-1]>array[i]){
+		for(int i=1;i<array.length;i+=2){
+			if(array[i-1]>array[i]){
 				swap(array, i-1, i);
 			}
 			if(i<array.length-1&&array[i]<array[i+1]){

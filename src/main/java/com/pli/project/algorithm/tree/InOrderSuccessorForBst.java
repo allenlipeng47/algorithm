@@ -28,7 +28,7 @@ public class InOrderSuccessorForBst {
         while (!s.isEmpty()) {
             while ((curr = s.peek()) != null)
                 s.push(curr.left);
-            s.pop();    // pop null value;
+            s.pop();    // pop null val;
             if (!s.isEmpty()) {
                 curr = s.pop();
                 if (found)

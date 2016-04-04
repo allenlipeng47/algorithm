@@ -46,9 +46,9 @@ public class NumOfPath {
 
     public static void main(String[] args) {
         int[][] obstacle= {
-                {0, 0, 0, 0},
-                {0, 1, 0, 0},
-                {0, 0, 0, 0}
+                {0, 0, 0},
+                {0, 0, 0},
+                {0, 0, 0}
         };
         System.out.println(uniquePathsWithObstacles(obstacle));
     }

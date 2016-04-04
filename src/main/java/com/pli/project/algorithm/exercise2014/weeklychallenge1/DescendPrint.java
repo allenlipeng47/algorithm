@@ -68,7 +68,7 @@ public class DescendPrint {
 	/*
 	 * Step1, put all <char, count> in hashMap. This costs O(n) time, O(n) space
 	 * Step2, initial List. Put Entry<Character, Integer> to this list. Step3,
-	 * sort the list according to value. This costs O(nlogn) time, it doesn't
+	 * sort the list according to val. This costs O(nlogn) time, it doesn't
 	 * cost extra space. Step3, print result from hashTree Total time, O(n +
 	 * nlogn) = O(nlogn) Total space, O(n)
 	 */
@@ -86,7 +86,7 @@ public class DescendPrint {
 			int count = hm.get(str.charAt(i));
 			hm.put(str.charAt(i), ++count);
 		}
-		// Sort hashMap according to value.
+		// Sort hashMap according to val.
 		Set<Entry<Character, Integer>> set = hm.entrySet();
 		ArrayList<Entry<Character, Integer>> list = new ArrayList<Entry<Character, Integer>>(
 				set);

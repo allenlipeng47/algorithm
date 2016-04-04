@@ -11,6 +11,7 @@ public class Tree{
 	}
 	public Tree left;
 	public Tree right;
+	public Tree parent;
 	public int value;
 	public String valueString;
 	public String toString(){
@@ -138,6 +139,28 @@ public class Tree{
 		t2.right = t1;
 		t5.right = t6;
 		return t7;
+	}
+
+	public static Tree getTree3(){
+		Tree t1 = new Tree(1);
+		Tree t2 = new Tree(2);
+		Tree t3 = new Tree(3);
+		Tree t4 = new Tree(4);
+		Tree t5 = new Tree(5);
+		t1.left = t2; t1.right = t5;
+		t2.left = t3; t2.right = t4;
+		return t1;
+	}
+
+	public static Tree getTree4(){
+		Tree t1 = new Tree(2);
+		Tree t2 = new Tree(1);
+		Tree t3 = new Tree(-1);
+		Tree t4 = new Tree(-1);
+		Tree t5 = new Tree(3);
+		t1.left = t2; t1.right = t5;
+		t2.left = t3; t2.right = t4;
+		return t1;
 	}
 	
 }

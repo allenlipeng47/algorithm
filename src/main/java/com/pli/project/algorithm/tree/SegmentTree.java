@@ -70,14 +70,14 @@ public class SegmentTree {
         return Integer.MAX_VALUE;
     }
 
-    // range[from,...,to] add value
+    // range[from,...,to] add val
     public void update(int from, int to, int value) {
         update(1, from + 1, to + 1, value);
     }
 
     private void update(int v, int from, int to, int value) {
         Node node = nodes[v];
-        if(contain(from, to, node.from, node.to)) { // if range contains node, update node and its pending value
+        if(contain(from, to, node.from, node.to)) { // if range contains node, update node and its pending val
             node.sum += value * node.size;
             node.min += value;
             node.pendingVal = node.pendingVal == null ? value : node.pendingVal + value;
@@ -94,7 +94,7 @@ public class SegmentTree {
         }
     }
 
-    // propagate the pending value to v's children. And update children sum, min
+    // propagate the pending val to v's children. And update children sum, min
     private void propagate(int v, Integer val) {
         if(val == null)
             return;
@@ -106,7 +106,7 @@ public class SegmentTree {
         nodes[v].pendingVal = null;
     }
 
-    //if Node[v] has pending value, the update its value.
+    //if Node[v] has pending val, the update its val.
     private void lazyUpdate(int v) {
         Node node = nodes[v];
         if(node.pendingVal != null) {
@@ -136,16 +136,16 @@ public class SegmentTree {
 
     private static class Node {
 
-        int value;  // value indicates the position in nodes[] array
+        int value;  // val indicates the position in nodes[] array
         int from;   // from and to is the range of node
         int to; // from and to is the range of node
         int size;   // range length of node
         int min;
         int sum;
 
-        /*When pendingVal is null, means no pendingVal. Otherwise it is the pending value.
-        Pending value is used to propagate node's children.
-        When update pending value, min and sum are both update too. */
+        /*When pendingVal is null, means no pendingVal. Otherwise it is the pending val.
+        Pending val is used to propagate node's children.
+        When update pending val, min and sum are both update too. */
         Integer pendingVal;
 
         public Node(int value, int from, int to) {

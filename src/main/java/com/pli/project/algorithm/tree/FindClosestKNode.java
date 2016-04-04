@@ -30,7 +30,7 @@ public class FindClosestKNode {
         if (list.size() < k)    // keep adding element when size hasn't reach k
             list.add(root.val);
         else {
-            // diff measure how big difference the window is different from the target value
+            // diff measure how big difference the window is different from the target val
             // moving from small to greater, the diff should be smaller. Until it passes the proper position
             double currDiff = Math.max(Math.abs(list.getLast() - target), Math.abs(list.getFirst() - target));
             double nextDiff = Math.max(Math.abs(list.get(1) - target), Math.abs(root.val - target));

@@ -61,9 +61,9 @@ public class WordDistanceII {
     }
 
     public static void main(String[] args) {
-        String[] words = {"practice", "makes", "efd", "abcd", "perfect", "amakes"};
+        String[] words = {"practice", "makes", "efd", "abcd", "perfect", "makes"};
         WordDistanceII word = new WordDistanceII(words);
-        System.out.println(word.getDistance("makes", "perfect"));
+        System.out.println(word.getDistance("makes", "makes"));
     }
 
 }

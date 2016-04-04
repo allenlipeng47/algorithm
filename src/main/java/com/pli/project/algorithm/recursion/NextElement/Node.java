@@ -14,17 +14,14 @@ public class Node<T> implements Data<T> {
 
     Collection<Data<T>> list;
 
-    @Override
     public boolean isCollection() {
         return list!=null;
     }
 
-    @Override
     public Collection<Data<T>> getCollection() {
         return list;
     }
 
-    @Override
     public T getElement() {
         return element;
     }

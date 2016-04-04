@@ -3,9 +3,9 @@ package com.pli.project.algorithm.tree;
 /**
  * Created by lipeng on 2016/1/25.
  * LeetCode: Count Univalue Subtrees
- Given a binary tree, count the number of uni-value subtrees.
+ Given a binary tree, count the number of uni-val subtrees.
 
- A Uni-value subtree means all nodes of the subtree have the same value.
+ A Uni-val subtree means all nodes of the subtree have the same val.
 
  For example:
 
@@ -38,7 +38,7 @@ public class CountUnivalSubtrees {
         }
         int[] left = countUnivalSubtreesHelper(root.left);
         int[] right = countUnivalSubtreesHelper(root.right);
-        // count current value only when its value both equal to its descendant, or it is a leaf node
+        // count current val only when its val both equal to its descendant, or it is a leaf node
         if (left[0] == root.val && right[0] == root.val || left[0] == Integer.MIN_VALUE && right[0] == Integer.MIN_VALUE)
             return new int[] {root.val, left[1] + right[1] + 1};
         else

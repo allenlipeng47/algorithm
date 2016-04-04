@@ -33,7 +33,7 @@ public class FindNextLargest {
 		int i;
 		for(i=arr.length-2;arr[i]>=arr[i+1]&&i>0;i--);	//find the first element arr[i], which arr[i]<arr[i-1]
 		if(arr[i]>=arr[i+1]){
-			System.out.println("current value is largest.");
+			System.out.println("current val is largest.");
 			return;
 		}
 		int j;

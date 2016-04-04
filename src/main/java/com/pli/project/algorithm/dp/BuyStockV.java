@@ -32,9 +32,9 @@ public class BuyStockV {
         for(int i = 2; i < n; i++) {
             /** sell at ith time. If at i-1 time already sold, then buy at i-1 time and sell at ith time.
             Or if i-1 time hasn't sold, we only bought from i-1 time. Last time it sold is before i-1.
-            Because there is one time cooldown. it should add max value at i-2 time when it was not sold. */
+            Because there is one time cooldown. it should add max val at i-2 time when it was not sold. */
             sell[i] = Math.max(prices[i] - prices[i - 1] + sell[i - 1], prices[i] - prices[i - 1] + notsell[i - 2]);
-            /* not sell at ith time, then max value of not sell at ith time equals either it is sold at i-1 time or we don't sell at i-1 time */
+            /* not sell at ith time, then max val of not sell at ith time equals either it is sold at i-1 time or we don't sell at i-1 time */
             notsell[i] = Math.max(sell[i - 1], notsell[i - 1]);
         }
         return Math.max(sell[n - 1], notsell[n - 1]);

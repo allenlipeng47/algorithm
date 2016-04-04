@@ -7,7 +7,7 @@ import org.omg.PortableInterceptor.ACTIVE;
  * Created by lipeng on 2015/12/12.
  * Online suffix tree check: http://www.allisons.org/ll/AlgDS/Tree/Suffix/
  */
-public class SuffixTree {
+public class SuffixTreeTest {
 
     public static final int CHARARCTER_SIZE = 256;
 

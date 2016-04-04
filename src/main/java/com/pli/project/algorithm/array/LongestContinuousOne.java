@@ -75,8 +75,9 @@ public class LongestContinuousOne {
 
     public static void main(String[] args) {
 //        int[] arr = {1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1};
-        int[] arr = {0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0};
+//        int[] arr = {0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0};
 //        System.out.println(getLeftNum(arr, 0));
+        int[] arr = {1, 1, 1, 1};
         System.out.println(getLongestFlip1To0(arr, 2));
     }
 

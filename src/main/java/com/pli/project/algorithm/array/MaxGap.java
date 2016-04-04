@@ -30,7 +30,7 @@ public class MaxGap {
             buckets[i] = new HashSet<Integer>();
         }
         for(int i=0; i<arr.length; i++) {
-            if(arr[i]==maxValue) {  //bucketPos of max value is buckets.length, which is an exception.
+            if(arr[i]==maxValue) {  //bucketPos of max val is buckets.length, which is an exception.
                 buckets[buckets.length-1].add(arr[i]);
             }
             else {
@@ -52,7 +52,7 @@ public class MaxGap {
                 break;
             }
             int rightBucket = i;
-            // find the max value in left bucket and min value in right bucket.
+            // find the max val in left bucket and min val in right bucket.
             int preMax = Integer.MIN_VALUE;
             for(Integer num:buckets[leftBucket]) {
                 preMax = num>preMax ? num : preMax;

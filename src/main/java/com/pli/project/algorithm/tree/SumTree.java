@@ -22,7 +22,7 @@ public class SumTree {
     }
 
     /**
-     * Return value is less than 0, means false. Then keep returning.
+     * Return val is less than 0, means false. Then keep returning.
      * If is a leaf node, then return node.val.
      * If it is not a leaf node, Sumtree should have node.val = left + right.
      * @param node
@@ -40,7 +40,7 @@ public class SumTree {
         if (right < 0) {
             return -1;
         }
-        if (left == 0 && right == 0) {  // leaf node return itself value
+        if (left == 0 && right == 0) {  // leaf node return itself val
             return node.val;
         }
         if (node.val == left + right) { // if not a leaf node, shouuld satisfy this one.

@@ -39,7 +39,7 @@ public class IntegerToEnglishWord {
         return "";
     }
 
-    public static String getOnes(int i) {
+    public static String getUnit(int i) {
         switch (i) {
             case 1:
                 return "One";
@@ -87,14 +87,14 @@ public class IntegerToEnglishWord {
         StringBuffer ans = new StringBuffer();
         int hundred = i / 100;
         if (hundred != 0)
-            ans.append(getOnes(hundred) + SPACE + HUNDRED);
+            ans.append(getUnit(hundred) + SPACE + HUNDRED);
         i = i - hundred * 100;
         if (i == 0)
             return ans.toString();
         if (i > 0 && i < 20) {
             if (ans.length() != 0)
                 ans.append(SPACE);
-            ans.append(getOnes(i));
+            ans.append(getUnit(i));
             return ans.toString();
         }
         int ten = i / 10;
@@ -106,7 +106,7 @@ public class IntegerToEnglishWord {
             return ans.toString();
         if (ans.length() != 0)
             ans.append(SPACE);
-        ans.append(getOnes(i));
+        ans.append(getUnit(i));
         return ans.toString();
     }
 
@@ -114,10 +114,12 @@ public class IntegerToEnglishWord {
         if (num == 0)
             return "Zero";
         StringBuffer ans = new StringBuffer();
+        // get unit
         int one = num - num / 1000 * 1000;
         num /= 1000;
         if (one > 0)
             ans.append(get3Digit(one));
+        // get thousand
         int thousand = num - num / 1000 * 1000;
         num /= 1000;
         if (thousand > 0) {
@@ -125,6 +127,7 @@ public class IntegerToEnglishWord {
                 ans.insert(0, SPACE);
             ans.insert(0, get3Digit(thousand) + SPACE + THOUSAND);
         }
+        // get million
         int million = num - num / 1000 * 1000;
         num /= 1000;
         if (million > 0) {
@@ -132,10 +135,13 @@ public class IntegerToEnglishWord {
                 ans.insert(0, SPACE);
             ans.insert(0, get3Digit(million) + SPACE + MILLION);
         }
-        if (num > 0) {
+        // get billion
+        int billion = num - num / 1000 * 1000;
+        num /= 1000;
+        if (billion > 0) {
             if (ans.length() != 0)
                 ans.insert(0, SPACE);
-            ans.insert(0, get3Digit(num) + SPACE + BILLION);
+            ans.insert(0, get3Digit(billion) + SPACE + BILLION);
         }
         return ans.toString();
     }

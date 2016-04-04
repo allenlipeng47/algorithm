@@ -42,7 +42,7 @@ public class Permutation3 {
 
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 1};
+        int[] nums = {1, 1, 2, 3};
         List<List<Integer>> list = permutate(nums);
         System.out.println(list);
     }

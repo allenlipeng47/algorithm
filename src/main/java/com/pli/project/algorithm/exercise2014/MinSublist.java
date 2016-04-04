@@ -27,7 +27,7 @@ public class MinSublist {
 	/*
 	 * This function return a left_bound, right_bound of the arr[], where arr[0,...,left_bound], arr[right_bound,...,len-1] are ascend.
 	 * And arr[left_bound] is less than arr[right_bound].
-	 * The idea is to find the right value in left and right side to compare. If left_compare is larger than right_compare, we found the boundes, and stop.
+	 * The idea is to find the right val in left and right side to compare. If left_compare is larger than right_compare, we found the boundes, and stop.
 	 * If left_bound is found, then we should always use arr[left_bound] to compare.
 	 * If right_bound is found, then we should always use arr[right_bound] to compare.
 	 * This function should pass the below cases:
@@ -55,7 +55,7 @@ public class MinSublist {
 				}
 			}
 			else{
-				left_compare = arr[left_bound];	//already found, left_compare is the left_bound value.
+				left_compare = arr[left_bound];	//already found, left_compare is the left_bound val.
 			}
 			if(!found_right){
 				if(arr[right_bound-1]>arr[right_bound]){	//if right_bound is found
@@ -67,7 +67,7 @@ public class MinSublist {
 				}
 			}
 			else{
-				right_compare = arr[right_bound];	//already found, right_compare is the right_bound value.
+				right_compare = arr[right_bound];	//already found, right_compare is the right_bound val.
 			}
 			if(found_left&&found_right||left_compare>right_compare){	//check if left, right bound are both found.
 				break;
@@ -148,60 +148,60 @@ public class MinSublist {
 
 
 //	/*
-//	 * This function return the first position i in a sorted arr[start,...,end], where value is larger than arr[start,...,i-1]
-//	 * For example, for (arr=[1,3,5,7,9], value=4, start=0, end=4), return 2.
-//	 * For (arr=[1,3,3,5,7,9], value=3, start=0, end=4), it returns 3.
-//	 * For (arr=[3,3,5,7,9], value=1, start=1, end=4), it returns 1.
-//	 * For (arr=[3,3,5,7,9], value=10, start=0, end=3), it returns 3.
-//	 * If value is less than all arr[start,...,end], return start.
-//	 * If value is larger than all arr[start,...,end], return end.
+//	 * This function return the first position i in a sorted arr[start,...,end], where val is larger than arr[start,...,i-1]
+//	 * For example, for (arr=[1,3,5,7,9], val=4, start=0, end=4), return 2.
+//	 * For (arr=[1,3,3,5,7,9], val=3, start=0, end=4), it returns 3.
+//	 * For (arr=[3,3,5,7,9], val=1, start=1, end=4), it returns 1.
+//	 * For (arr=[3,3,5,7,9], val=10, start=0, end=3), it returns 3.
+//	 * If val is less than all arr[start,...,end], return start.
+//	 * If val is larger than all arr[start,...,end], return end.
 //	 */
-//	public static int findLeftPos(int[] arr, int value,  int start, int end){
+//	public static int findLeftPos(int[] arr, int val,  int start, int end){
 //		if(arr==null||end-start<1){
 //			return -1;
 //		}
-//		return findLeftPosUtil(arr, value, start, end, start, end);
+//		return findLeftPosUtil(arr, val, start, end, start, end);
 //	}
 //	
-//	public static int findLeftPosUtil(int[] arr, int value, int original_start, int original_end, int start, int end){
+//	public static int findLeftPosUtil(int[] arr, int val, int original_start, int original_end, int start, int end){
 //		int mid = (start+end)/2;
 //		if(mid<=original_start){
-//			if(mid==original_start&&value>=arr[mid]&&value<arr[mid+1]){
-//				return mid+1;	//check boundary value
+//			if(mid==original_start&&val>=arr[mid]&&val<arr[mid+1]){
+//				return mid+1;	//check boundary val
 //			}
 //			return original_start;
 //		}
 //		if(mid>=original_end){
 //			return original_end;
 //		}
-//		if(value>=arr[mid-1]&&value<arr[mid]){
+//		if(val>=arr[mid-1]&&val<arr[mid]){
 //			return mid;
 //		}
-//		if(value<arr[mid]){
-//			return findLeftPosUtil(arr, value, original_start, original_end, start, mid-1);
+//		if(val<arr[mid]){
+//			return findLeftPosUtil(arr, val, original_start, original_end, start, mid-1);
 //		}
 //		else{
-//			return findLeftPosUtil(arr, value, original_start, original_end, mid+1, end);
+//			return findLeftPosUtil(arr, val, original_start, original_end, mid+1, end);
 //		}
 //	}
 //	
 //	/*
-//	 * This function return the first position i in a sorted arr[start,...,end], where value is larger less arr[i+1,...,right]
-//	 * For example, for (arr=[1,3,5,7,9], value=4, start=0, end=4), return 1.
-//	 * For (arr=[1,2,3,5,5,7,9], value=5, start=0, end=6), it returns 2.
-//	 * For (arr=[3,3,5,7,9], value=4, start=2, end=4), it returns 2.
-//	 * For (arr=[3,3,5,7,9], value=10, start=0, end=3), it returns 3.
-//	 * If value is less than all arr[start,...,end], return start.
-//	 * If value is larger than all arr[start,...,end], return end.
+//	 * This function return the first position i in a sorted arr[start,...,end], where val is larger less arr[i+1,...,right]
+//	 * For example, for (arr=[1,3,5,7,9], val=4, start=0, end=4), return 1.
+//	 * For (arr=[1,2,3,5,5,7,9], val=5, start=0, end=6), it returns 2.
+//	 * For (arr=[3,3,5,7,9], val=4, start=2, end=4), it returns 2.
+//	 * For (arr=[3,3,5,7,9], val=10, start=0, end=3), it returns 3.
+//	 * If val is less than all arr[start,...,end], return start.
+//	 * If val is larger than all arr[start,...,end], return end.
 //	 */
-//	public static int findRightPos(int[] arr, int value,  int start, int end){
+//	public static int findRightPos(int[] arr, int val,  int start, int end){
 //		if(arr==null){
 //			return -1;
 //		}
-//		return findRightPosUtil(arr, value, start, end, start, end);
+//		return findRightPosUtil(arr, val, start, end, start, end);
 //	}
 //	
-//	public static int findRightPosUtil(int[] arr, int value, int original_start, int original_end, int start, int end){
+//	public static int findRightPosUtil(int[] arr, int val, int original_start, int original_end, int start, int end){
 //		int mid = (start+end)/2;
 //		if(mid<=original_start){
 //			return original_start;
@@ -209,14 +209,14 @@ public class MinSublist {
 //		if(mid>=original_end){
 //			return original_end;
 //		}
-//		if(value<=arr[mid+1]&&value>arr[mid]){
+//		if(val<=arr[mid+1]&&val>arr[mid]){
 //			return mid;
 //		}
-//		if(value<=arr[mid]){
-//			return findRightPosUtil(arr, value, original_start, original_end, start, mid-1);
+//		if(val<=arr[mid]){
+//			return findRightPosUtil(arr, val, original_start, original_end, start, mid-1);
 //		}
 //		else{
-//			return findRightPosUtil(arr, value, original_start, original_end, mid+1, end);
+//			return findRightPosUtil(arr, val, original_start, original_end, mid+1, end);
 //		}
 //	}
 }

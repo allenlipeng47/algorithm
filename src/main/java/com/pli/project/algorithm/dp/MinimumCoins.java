@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by lipeng on 2015/12/1.
- * Given a set of coins and a bill value, use minimum number of coins to consist of number.
+ * Given a set of coins and a bill val, use minimum number of coins to consist of number.
  * For example, coin = {1, 2, 5}, bill=11. the minimum coins is 5+5+1=11, 3 coins
  * coin = {1, 2, 5}, bill=11, the minimum coins is 1+1+1+1+1+1+1+1+1+1+1=11, 11 coins
  * coin = {2, 5, 7}, bill=11, there is no result, return -1

@@ -8,7 +8,7 @@ import java.math.BigInteger;
 public class Gcd {
 
     /**
-     * Keep a is the max value.
+     * Keep a is the max val.
      * gcd{a,b}=gcd{?a,b}=gcd{a,?b}=gcd{?a,?b}
      * https://proofwiki.org/wiki/GCD_for_Negative_Integers
      */

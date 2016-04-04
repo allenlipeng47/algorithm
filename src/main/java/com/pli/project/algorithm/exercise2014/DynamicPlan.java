@@ -48,7 +48,7 @@ public class DynamicPlan {
 			}//for
 		}//for
 	/*------------------------------result pring-------------------------------*/
-		System.out.print("value:\t");
+		System.out.print("val:\t");
 		print(value);
 		System.out.print("weight:\t");
 		print(weight);

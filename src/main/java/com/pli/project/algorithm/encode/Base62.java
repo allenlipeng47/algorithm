@@ -1,6 +1,5 @@
 package com.pli.project.algorithm.encode;
 
-import sun.org.mozilla.javascript.internal.ast.WhileLoop;
 
 /**
  * Created by lipeng on 2015/11/29.

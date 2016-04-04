@@ -21,7 +21,7 @@ public class CountBoundedSlices {
 			BoundedSlicesSData front = queue.get(0);
 			BoundedSlicesSData end = queue.get(queue.size()-1);
 			if(end.value-front.value>k&&curr.value==end.value){
-				//Got a larger value at queue end. It makes max-min>k. So modify the queue front.
+				//Got a larger val at queue end. It makes max-min>k. So modify the queue front.
 				while(end.value-front.value>k){
 					int front_time = front.position;
 					queue.remove(0);
@@ -36,7 +36,7 @@ public class CountBoundedSlices {
 				}
 			}
 			else if(end.value-front.value>k&&curr.value==front.value){
-				//Got a smaller value at queue front. It makes max-min>k. So modify the queue end.
+				//Got a smaller val at queue front. It makes max-min>k. So modify the queue end.
 				while(end.value-front.value>k){
 					int end_time = end.position;
 					queue.remove(queue.size()-1);
@@ -74,7 +74,7 @@ public class CountBoundedSlices {
 }
 
 /*
- * The queue should store both value and position. So create this class for convinent.
+ * The queue should store both val and position. So create this class for convinent.
  */
 class BoundedSlicesSData{
 	int value;

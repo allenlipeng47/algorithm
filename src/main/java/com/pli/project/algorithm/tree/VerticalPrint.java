@@ -76,7 +76,7 @@ public class VerticalPrint {
     }
 
     /* Only find min and max level. After that, loop printer from min to max.
-    * In each loop, only print the tree value where it is in current level.
+    * In each loop, only print the tree val where it is in current level.
      * Time complexity O(d^n). d=max-min. Space complexity O(1)*/
     public static void verticalPrint2(Tree tree){
         Assert.assertNotNull(tree);

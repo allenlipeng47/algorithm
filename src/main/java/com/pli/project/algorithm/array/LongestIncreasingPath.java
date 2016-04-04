@@ -23,7 +23,7 @@ public class LongestIncreasingPath {
         while (count > 0) {
             HashSet<Point> remove = new HashSet<Point>();
             // each round, remove the peak number.
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
                     if (matrix[i][j] == Integer.MIN_VALUE)
                         continue;
@@ -34,6 +34,7 @@ public class LongestIncreasingPath {
                     if (up && bottom && left && right)
                         remove.add(new Point(i, j));
                 }
+            }
             for (Point point : remove) {
                 matrix[point.x][point.y] = Integer.MIN_VALUE;
                 count--;

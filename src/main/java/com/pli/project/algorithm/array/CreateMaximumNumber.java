@@ -37,12 +37,17 @@ public class CreateMaximumNumber {
             if(set1.arr[maxPos1]==set2.arr[maxPos2]) {
                 String result1=null, result2=null;
                 HelperSet tmpSet1 = null, tmpSet2 = null;
-                if((set1.arr.length-maxPos1-1)+(set2.arr.length-set2.start)>=k-1) {  // try max value in set1
+//                if((set1.arr.length-maxPos1-1)+(set2.arr.length-maxPos2-1)>=k-2 && set1.end==set1.arr.length-1 && set2.end==set2.arr.length-1) {
+//                    set1.start = maxPos1 + 1;
+//                    set2.start = maxPos2 + 1;
+//                    return String.valueOf(set1.arr[maxPos1]) + String.valueOf(set2.arr[maxPos2]) + pickup(set1, set2, k-2);
+//                }
+                if((set1.arr.length-maxPos1-1)+(set2.arr.length-set2.start)>=k-1) {  // try max val in set1
                     tmpSet1 = set1.clone();
                     tmpSet1.start = maxPos1 + 1;
                     result1 = String.valueOf(set1.arr[maxPos1]) + pickup(tmpSet1, set2, k-1);
                 }
-                if((set2.arr.length-maxPos2-1)+(set1.arr.length-set1.start)>=k-1) {  // try max value in set2
+                if((set2.arr.length-maxPos2-1)+(set1.arr.length-set1.start)>=k-1) {  // try max val in set2
                     tmpSet2 = set2.clone();
                     tmpSet2.start = maxPos2 + 1;
                     result2 = String.valueOf(set2.arr[maxPos2]) + pickup(set1, tmpSet2, k-1);
@@ -75,7 +80,7 @@ public class CreateMaximumNumber {
                 smallerSet = set1;
                 greatMaxPos = maxPos2;
             }
-            // it is possible to use max value in greater set. Then go to next iteration.
+            // it is possible to use max val in greater set. Then go to next iteration.
             if((greaterSet.arr.length-greatMaxPos-1)+(smallerSet.arr.length-smallerSet.start)>=k-1) {
                 greaterSet.start = greatMaxPos + 1;
                 return String.valueOf(greaterSet.arr[greatMaxPos]) + pickup(greaterSet, smallerSet, k-1);
@@ -90,7 +95,7 @@ public class CreateMaximumNumber {
         final int[] arr;
         public int start;
         public int end;
-        public int[][] maxArr; // maxArr[i][j] is the max value between arr[i],...,arr[j]
+        public int[][] maxArr; // maxArr[i][j] is the max val between arr[i],...,arr[j]
         public HelperSet(int[] arr) {
             this.arr = arr;
             start = 0;
@@ -132,7 +137,7 @@ public class CreateMaximumNumber {
             }
         }
 
-        // for arr, return index of max value between [start,...,end]
+        // for arr, return index of max val between [start,...,end]
         private int getLargestPos() {
             return maxArr[start][end];
         }
@@ -146,6 +151,7 @@ public class CreateMaximumNumber {
         int[] arr1 = {2,1,2,1,2,2,1,2,2,1,1,2,1,0,2,0,1,0,1,1,2,0,0,2,2,2,2,1,1,1,2,1,2,0,2,0,1,1,0,1,0,2,0,1,0,2,0,1,1,0,0,2,0,1,1,2,0,2,2,1,2,1,2,1,0,1,2,0,2,1,2,2,2,0,1,1,0,2,0,1,1,0,0,0,2,1,1,1,0,1,1,0,1,2,1,2,0,0,0,2,1,2,2,1,1,0,1,1,0,0,1,0,0,0,2,1,1,0,2,0,2,2,0,2,0,0,2,0,1,2,1,1,1,2,1,0,1,1,0,2,1,2,2,1,0,1,1,1,2,0,2,2,2,0,2,1,1,2,1,1,2,0,2,1,0,2,0,0,2,2,2,0,2,1,2,2,1,2,1,2,2,2,1,1,2,0,2,0,0,2,2,2,0,2,2,1,0,0,2,2,2,1,1,0,2,1,0,1,2,1,1,2,2,1,1,0,2,1,2,2,1,2,1,0,0,0,0,1,1,0,2,2,2,2,2,2,2,2,1,1,0,2,1,0,0,0,0,2,1,1};
         int[] arr2 = {1,1,0,2,0,1,1,1,0,2,2,2,1,1,0,1,2,1,2,1,0,1,2,2,2,2,1,1,0,2,0,1,0,0,1,1,0,1,2,1,2,1,2,0,1,1,1,1,2,0,1,1,1,0,0,1,0,1,2,1,1,0,2,2,1,2,0,2,0,1,1,2,0,1,1,2,2,1,0,1,2,2,0,1,1,2,2,0,2,2,0,2,1,0,0,2,1,0,0,2,1,2,1,2,0,2,0,1,1,2,1,1,1,2,0,2,2,0,2,2,0,2,1,2,1,2,0,2,0,0,1,2,2,2,2,1,2,2,0,1,0,0,2,2,2,2,0,1,0,2,1,2,2,2,1,1,1,1,2,0,0,1,0,0,2,2,1,0,0,1,1,0,0,1,1,0,2,2,2,2,2,1,0,2,2,0,0,1,0,0,1,1,1,2,2,0,0,2,0,0,0,1,2,0,2,0,1,2,0,1,2,0,1,1,0,0,1,2,1,0,2,1,0,1,2,0,1,1,2,1,0,2,1,2,1,1,0,2,2,1,0,2,1,1,1,0,0,0,1,0};
         int k = 500;
+        // int[] result = [2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 1, 0, 2, 0, 2, 0, 1, 1, 1, 0, 2, 2, 2, 1, 1, 0, 1, 2, 1, 2, 1, 0, 1, 2, 2, 2, 2, 1, 1, 0, 2, 0, 1, 0, 1, 1, 2, 0, 1, 0, 0, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2, 0, 2, 0, 1, 1, 0, 1, 0, 2, 0, 1, 0, 2, 0, 1, 1, 0, 0, 2, 0, 1, 1, 2, 0, 2, 2, 1, 2, 1, 2, 1, 0, 1, 2, 0, 2, 1, 2, 2, 2, 0, 1, 1, 0, 2, 0, 1, 1, 0, 0, 1, 1, 0, 1, 2, 1, 2, 1, 2, 0, 1, 1, 1, 1, 2, 0, 1, 1, 1, 0, 0, 1, 0, 1, 2, 1, 1, 0, 2, 2, 1, 2, 0, 2, 0, 1, 1, 2, 0, 1, 1, 2, 2, 1, 0, 1, 2, 2, 0, 1, 1, 2, 2, 0, 2, 2, 0, 2, 1, 0, 0, 2, 1, 0, 0, 2, 1, 2, 1, 2, 0, 2, 0, 1, 1, 2, 1, 1, 1, 2, 0, 2, 2, 0, 2, 2, 0, 2, 1, 2, 1, 2, 0, 2, 0, 0, 1, 2, 2, 2, 2, 1, 2, 2, 0, 1, 0, 0, 2, 2, 2, 2, 0, 1, 0, 2, 1, 2, 2, 2, 1, 1, 1, 1, 2, 0, 0, 1, 0, 0, 2, 2, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 2, 2, 2, 2, 2, 1, 0, 2, 2, 0, 0, 1, 0, 0, 1, 1, 1, 2, 2, 0, 0, 2, 0, 0, 0, 2, 1, 1, 1, 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 2, 1, 2, 2, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 2, 1, 1, 0, 2, 0, 2, 2, 0, 2, 0, 0, 2, 0, 1, 2, 1, 1, 1, 2, 1, 0, 1, 1, 0, 2, 1, 2, 2, 1, 0, 1, 1, 1, 2, 0, 2, 2, 2, 0, 2, 1, 1, 2, 1, 1, 2, 0, 2, 1, 0, 2, 0, 0, 2, 2, 2, 0, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 1, 1, 2, 0, 2, 0, 0, 2, 2, 2, 0, 2, 2, 1, 0, 0, 2, 2, 2, 1, 1, 0, 2, 1, 0, 1, 2, 1, 1, 2, 2, 1, 1, 0, 2, 1, 2, 2, 1, 2, 1, 0, 0, 0, 1, 2, 0, 2, 0, 1, 2, 0, 1, 2, 0, 1, 1, 0, 0, 1, 2, 1, 0, 2, 1, 0, 1, 2, 0, 1, 1, 2, 1, 0, 2, 1, 2, 1, 1, 0, 2, 2, 1, 0, 2, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 2, 1, 0, 0, 0, 0, 2, 1, 1];
         int[] result = maxNumber(arr1, arr2, k);
         System.out.println(Arrays.toString(result));
     }

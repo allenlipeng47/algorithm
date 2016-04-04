@@ -29,7 +29,7 @@ public class LargestBst {
     }
 
     /**
-     * The idea is that return the (max, min) value from left subtree, (max, min) value from right subtree.
+     * The idea is that return the (max, min) val from left subtree, (max, min) val from right subtree.
      * Node is a valid bst if left.max < node.val and right.min > node.val
      * If triplet.ans is negative, it means subtree is invalid already. The answer from sub tree is abs(triplet.ans) */
     public static Triplet largestBstHelper(TreeNode node) {

@@ -73,7 +73,7 @@ public class PostOrderTraverse {
         public int value;
         public Tree successor;
         public boolean visited = false;
-        public int oldValue; //After sum tree calculation, value will be updated, but need to save old value for parent calculation.
+        public int oldValue; //After sum tree calculation, val will be updated, but need to save old val for parent calculation.
         public String toString(){
             return String.valueOf(value);
         }

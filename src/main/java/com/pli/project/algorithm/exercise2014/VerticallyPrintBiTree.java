@@ -18,7 +18,7 @@ public class VerticallyPrintBiTree {
 	}
 	
 	/**
-	 * 或者可以考虑用HashMap将每个点和Hori的值保存起来，<Hori, tree.value>，
+	 * 或者可以考虑用HashMap将每个点和Hori的值保存起来，<Hori, tree.val>，
 	 * 并且记录最大值，最小值，遍历一遍后，从最小值到最大值打印
 	 * @param tree
 	 * @param minHori

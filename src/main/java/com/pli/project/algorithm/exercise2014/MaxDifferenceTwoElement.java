@@ -5,8 +5,8 @@ package com.pli.project.algorithm.exercise2014;
  * Q2. Given an array arr[] of integers, find out the maximum difference between any 
  * two elements such that larger element appears after the smaller number in arr[]. 
  * Print the indices of the two elements also.
- * Example: If array is [2, 3, 10, 6, 4, 8, 1] then returned value should be 8 (difference between 10 and 2). 
- * If array is [ 7, 9, 5, 6, 3, 2 ] then returned value should be 2 (difference between 7 and 9).
+ * Example: If array is [2, 3, 10, 6, 4, 8, 1] then returned val should be 8 (difference between 10 and 2).
+ * If array is [ 7, 9, 5, 6, 3, 2 ] then returned val should be 2 (difference between 7 and 9).
  */
 public class MaxDifferenceTwoElement {
 	
@@ -20,8 +20,8 @@ public class MaxDifferenceTwoElement {
 		if(array==null){
 			return;
 		}
-		int min_pos = 0;	//position of min value
-		int max_pos = 0;	//position of max value
+		int min_pos = 0;	//position of min val
+		int max_pos = 0;	//position of max val
 		int max_gap = Integer.MIN_VALUE;
 		for(int i=1;i<array.length;i++){
 			if(array[i]-array[min_pos]>max_gap){

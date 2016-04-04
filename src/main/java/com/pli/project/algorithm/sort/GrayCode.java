@@ -19,7 +19,8 @@ public class GrayCode {
     }
 
     public static void main(String[] args) {
-        List<Integer> ans = grayCode(3);
+        List<Integer> ans = grayCode(2);
+        System.out.println(ans);
         System.out.println();
     }
 }

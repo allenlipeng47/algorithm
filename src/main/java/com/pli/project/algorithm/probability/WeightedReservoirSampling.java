@@ -47,7 +47,7 @@ public class WeightedReservoirSampling {
         @Override
         public String toString() {
             return "WrsElement{" +
-                    "value=" + value +
+                    "val=" + value +
                     ", key=" + key +
                     '}';
         }

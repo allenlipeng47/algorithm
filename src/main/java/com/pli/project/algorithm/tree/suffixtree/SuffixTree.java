@@ -312,7 +312,7 @@ public class SuffixTree {
         System.out.println(longestPalindrome("abaccddccefe"));
 
         // find the longest repeated substring
-        SuffixTree tree3 = new SuffixTree("ATCGATCGA");
+        SuffixTree tree3 = new SuffixTree("abbabba");
         System.out.println(tree3.lrs());
     }
 

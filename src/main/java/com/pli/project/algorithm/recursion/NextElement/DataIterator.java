@@ -39,7 +39,6 @@ public class DataIterator<T> implements Iterator<Data<T>>{
         return curr;
     }
 
-    @Override
     public void remove() {
 
     }

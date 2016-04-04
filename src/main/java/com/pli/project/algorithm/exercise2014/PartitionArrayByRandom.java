@@ -12,10 +12,10 @@ public class PartitionArrayByRandom {
 	
 	/*
 	 * partition array into 2 parts. array[low,...,i] and array[i+1,...,high]
-	 * which element in array[low,...,i] is less than value, element in array[i+1,...,high] is larger than value
+	 * which element in array[low,...,i] is less than val, element in array[i+1,...,high] is larger than val
 	 */
 	public static void partition(int[] array, int low, int high, int value){
-		int startOfHigh = 0;	//indicate the 1st element position of the elements which are larger than value
+		int startOfHigh = 0;	//indicate the 1st element position of the elements which are larger than val
 		for(int i=low;i<high;i++){
 			if(array[i]>value){
 				continue;
@@ -24,7 +24,7 @@ public class PartitionArrayByRandom {
 				swap(array, i, startOfHigh);
 				startOfHigh++;
 			}
-			else{	//array[i]==value
+			else{	//array[i]==val
 				swap(array, i, high);
 				i--;
 			}

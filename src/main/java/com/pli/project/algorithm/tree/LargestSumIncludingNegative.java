@@ -4,8 +4,8 @@ import com.pli.project.algorithm.util.Tree;
 
 /**
  * Created by lipeng on 2015/11/30.
- * BST tree has its value. There should be a path in tree which has the maximum sum of value.
- * Find the maximum value
+ * BST tree has its val. There should be a path in tree which has the maximum sum of val.
+ * Find the maximum val
  */
 public class LargestSumIncludingNegative {
 
@@ -35,7 +35,7 @@ public class LargestSumIncludingNegative {
     }
 
     static class SumRecord {
-        public int sumOnNode = 0;   //max value
+        public int sumOnNode = 0;   //max val
         public int sum = 0;
     }
 
