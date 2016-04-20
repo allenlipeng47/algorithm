@@ -1,4 +1,4 @@
-package com.pli.project.algorithm.array;
+package com.pli.project.algorithm.leetcode;
 
 /**
  * Created by lipeng on 2016/4/19.
