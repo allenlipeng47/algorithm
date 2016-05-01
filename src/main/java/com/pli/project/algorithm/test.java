@@ -13,21 +13,35 @@ import java.util.*;
  */
 public class test {
 
-    private static BigInteger factorial(int n) {
-        BigInteger ans = new BigInteger("1");
-        while (n > 1) {
-            ans = ans.multiply(new BigInteger(String.valueOf(n--)));
+    public static int myAtoi(String str) {
+        int index = 0, ans = 0, sign = 1, len = str.length();
+        while (index < len && str.charAt(index) == ' ') {
+            index++;
         }
-        return ans;
+        if (index < len && (str.charAt(index) == '+' || str.charAt(index) == '-')) {
+            sign = str.charAt(index++) == '-' ? -1 : 1;
+        }
+        while (index < len) {
+            char ch = str.charAt(index);
+            if (ch < '0' || ch > '9') {
+                break;
+            }
+            int base = ch - '0';
+            if (Integer.MAX_VALUE / 10 < ans || Integer.MAX_VALUE / 10 == ans && Integer.MAX_VALUE % 10 <= base) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            ans = ans * 10 + base;
+            index++;
+        }
+        return ans * sign;
     }
 
-    private static int numberOfFactor5(int n) {
-        return n <= 0 ? 0 : n / 5 + numberOfFactor5(n / 5);
-    }
 
     public static void main(String[] args) {
-        int n = 20;
-        System.out.println(numberOfFactor5(25));
+//        int[] arr = {3, 1, 1, 2, 5, 1};
+        System.out.println(myAtoi("-2147483648"));
+//        System.out.println(Arrays.toString(arr));
+        System.out.println(Integer.MIN_VALUE);
     }
 
 
