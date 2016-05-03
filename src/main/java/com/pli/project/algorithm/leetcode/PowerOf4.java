@@ -6,7 +6,7 @@ package com.pli.project.algorithm.leetcode;
 public class PowerOf4 {
 
     public static boolean isPowerOfFour(int num) {
-        return (num & (num - 1)) == 0 && (num & (-num) & 0x55555555) != 0;
+        return (num & (num - 1)) == 0 && (num & 0x55555555) != 0;
     }
 
     public static void main(String[] args) {
