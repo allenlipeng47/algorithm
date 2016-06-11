@@ -28,9 +28,12 @@ public class Basic {
 
     public static void lambdaWay() {
         Math add = (int a, int b) -> a + b;
-        Math sub = (int a, int b) -> a - b;
+        Math sub = (int a, int b) -> {
+            return a - b;
+        };
         System.out.println(MathOperation(1, 2, add));
         System.out.println(MathOperation(1, 2, sub));
+        
     }
 
     /**
