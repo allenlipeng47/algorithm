@@ -35,7 +35,7 @@ public class Basic {
 
     /**
      * MathOperation and Math are the core for defining lambda expression.
-     * Math is a interface which only has one function.
+     * An operation interface and a function which uses interface.do() to return something.
      */
 
     public static int MathOperation (int a, int b, Math math) {
