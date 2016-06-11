@@ -55,7 +55,8 @@ public class RussianDollEnvelopes {
         return ans;
     }
 
-    public static int maxEnvelopes(int[][] envelopes) {
+    // stand answer
+    public static int maxEnvelopes3(int[][] envelopes) {
         Arrays.sort(envelopes, new Comparator<int[]>() {
             public int compare(int[] o1, int[] o2) {
                 if (o1[0] == o2[0]) {   // if width are same, then order in descending order of height
@@ -66,6 +67,25 @@ public class RussianDollEnvelopes {
                 }
             }
         });
+        int[] rec = new int[envelopes.length];
+        int len = 0;
+        for (int[] envelope : envelopes) {
+            int pos = Arrays.binarySearch(rec, 0, len, envelope[1]);
+            // negative means didn't find the element. Then it points to first element which is greater than envelope[1]
+            if (pos < 0) {
+                pos = -pos - 1;
+            }
+            rec[pos] = envelope[1];
+            if (pos == len) {
+                len++;
+            }
+        }
+        return len;
+    }
+
+    // lambda expression for comparison
+    public static int maxEnvelopes(int[][] envelopes) {
+        Arrays.sort(envelopes, (int[] e1, int[] e2) -> e1[0] == e2[0] ? e2[1] - e1[1] : e1[0] - e2[0]);
         int[] rec = new int[envelopes.length];
         int len = 0;
         for (int[] envelope : envelopes) {
