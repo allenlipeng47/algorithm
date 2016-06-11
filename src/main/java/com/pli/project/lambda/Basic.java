@@ -33,7 +33,6 @@ public class Basic {
         };
         System.out.println(MathOperation(1, 2, add));
         System.out.println(MathOperation(1, 2, sub));
-        
     }
 
     /**

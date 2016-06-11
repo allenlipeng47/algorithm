@@ -19,6 +19,7 @@ public class Usage {
         replaceAll();
         sortCase1();
         sortCase2();
+        threadCase();
     }
 
     public static void forEachCase() {
