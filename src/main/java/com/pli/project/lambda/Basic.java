@@ -33,6 +33,11 @@ public class Basic {
         System.out.println(MathOperation(1, 2, sub));
     }
 
+    /**
+     * MathOperation and Math are the core for defining lambda expression.
+     * Math is a interface which only has one function.
+     */
+
     public static int MathOperation (int a, int b, Math math) {
         return math.operate(a, b);
     }
