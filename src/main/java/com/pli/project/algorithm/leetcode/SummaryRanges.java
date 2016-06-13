@@ -28,7 +28,7 @@ public class SummaryRanges {
     }
 
     public void addNum(int val) {
-        if (tm.containsKey(val)) {
+        if (tm.containsKey(val)) {  // to eliminate exception2
             return;
         }
         Map.Entry<Integer, Interval> lo = tm.lowerEntry(val), hi = tm.higherEntry(val);
@@ -36,7 +36,7 @@ public class SummaryRanges {
             lo.getValue().end = hi.getValue().end;
             tm.remove(hi.getKey());
         }
-        else if (lo != null && val <= lo.getValue().end + 1) {
+        else if (lo != null && val <= lo.getValue().end + 1) {  // to eliminate exception1
             lo.getValue().end = Math.max(val + 1, lo.getValue().end);
         }
         else if (hi != null && val + 1 == hi.getValue().start) {
@@ -48,28 +48,6 @@ public class SummaryRanges {
             tm.put(val, new Interval(val, val));
         }
     }
-
-//    public void addNum(int val) {
-//        if (tm.containsKey(val)) {
-//            return;
-//        }
-//        Integer lo = tm.lowerKey(val), hi = tm.higherKey(val);
-//        if (lo != null && tm.get(lo).end + 1 == val && hi != null && val + 1 == tm.get(hi).start) {
-//            tm.get(lo).end = tm.get(hi).end;
-//            tm.remove(hi);
-//        }
-//        else if (lo != null && val <= tm.get(lo).end + 1) {
-//            tm.get(lo).end = Math.max(val, tm.get(lo).end);
-//        }
-//        else if (hi != null && val + 1 == tm.get(hi).start) {
-//            Interval interval = new Interval(tm.get(hi).start - 1, tm.get(hi).end);
-//            tm.put(val, interval);
-//            tm.remove(hi);
-//        }
-//        else {
-//            tm.put(val, new Interval(val, val));
-//        }
-//    }
 
     public List<Interval> getIntervals() {
         return new ArrayList<>(tm.values());
