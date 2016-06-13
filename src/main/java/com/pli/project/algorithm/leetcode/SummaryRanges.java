@@ -32,14 +32,14 @@ public class SummaryRanges {
             return;
         }
         Map.Entry<Integer, Interval> lo = tm.lowerEntry(val), hi = tm.higherEntry(val);
-        if (lo != null && lo.getValue().end + 1 == val && hi != null && val + 1 == hi.getValue().start) {
+        if (lo != null && lo.getValue().end + 1 == val && hi != null && val + 1 == hi.getValue().start) {   // in the meddle
             lo.getValue().end = hi.getValue().end;
             tm.remove(hi.getKey());
         }
-        else if (lo != null && val <= lo.getValue().end + 1) {  // to eliminate exception1
+        else if (lo != null && val <= lo.getValue().end + 1) {  // add to right or eliminate exception1
             lo.getValue().end = Math.max(val + 1, lo.getValue().end);
         }
-        else if (hi != null && val + 1 == hi.getValue().start) {
+        else if (hi != null && val + 1 == hi.getValue().start) {    // add to left
             Interval interval = new Interval(hi.getValue().start - 1, hi.getValue().end);
             tm.put(val, interval);
             tm.remove(hi.getKey());
