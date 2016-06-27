@@ -3,6 +3,7 @@ package com.pli.project.algorithm.array;
 /**
  * Created by lipeng on 2016/6/26.
  * http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/
+ * This is a derivation from MaxSubarray problem.
  */
 public class MaxSubarrayRectangle {
 
