@@ -8,18 +8,18 @@ package com.pli.project.algorithm.array;
 public class MaxSubarrayRectangle {
 
     public static int maxSubArrayRectangle(int [][]arr) {
-        int height = arr.length, width = arr[0].length, max = arr[0][0];
+        int row = arr.length, col = arr[0].length, max = arr[0][0];
         int[] helperArr = null;
-        for (int left = 0; left < width; left++) {
-            helperArr = new int[width];
-            for (int right = left; right < width; right++) {
+        for (int left = 0; left < col; left++) {
+            helperArr = new int[col];
+            for (int right = left; right < col; right++) {
                 // update helper
-                for (int i = 0; i < height; i++) {
+                for (int i = 0; i < row; i++) {
                     helperArr[i] += arr[i][right];
                 }
                 // Kodane algorithm to find the top and bottom for max continuous sequence
                 int helperMax = helperArr[0], currHelperMax = helperArr[0];
-                for (int i = 0; i < height; i++) {
+                for (int i = 0; i < row; i++) {
                     currHelperMax = Math.max(currHelperMax + helperArr[i], helperArr[i]);
                     helperMax = Math.max(helperMax, currHelperMax);
                 }
