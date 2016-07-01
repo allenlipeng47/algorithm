@@ -6,7 +6,12 @@ package com.pli.project.algorithm.leetcode;
  */
 public class SumOfTwoIntegers {
 
+
     public static int getSum(int a, int b) {
+        /*
+        sum = a ^ b
+        carrier = (a & b) << 1
+         */
         while (b != 0) {
             int sum = a ^ b;    // to get the current sum
             b = (a & b) << 1;   // to get the carrier
