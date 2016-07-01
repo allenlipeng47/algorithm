@@ -14,6 +14,7 @@ public class MinimumTreeHeights {
         if (n == 1) {
             return Collections.singletonList(0);
         }
+        // construct topology
         List<Set<Integer>> nodes = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             nodes.add(new HashSet<>());
@@ -24,6 +25,7 @@ public class MinimumTreeHeights {
         }
         int remaining = n;
         List<Integer> leaves = new ArrayList<>();
+        // initialize leaves
         for (int i = 0; i < n; i++) {
             if (nodes.get(i).size() == 1) {
                 leaves.add(i);
@@ -32,6 +34,7 @@ public class MinimumTreeHeights {
                 remaining--;
             }
         }
+        // at each while loop, remove the leave node. If operation node only has 1 node left, then it becomes leaf node too.
         while (remaining > 2) {
             List<Integer> newLeaves = new ArrayList<>();
             for (int i : leaves) {
