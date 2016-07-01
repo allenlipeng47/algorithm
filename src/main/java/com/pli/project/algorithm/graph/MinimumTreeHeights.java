@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class MinimumTreeHeights {
 
-    public static List<Integer> findMinHeightTrees2(int n, int[][] edges) {
+    public static List<Integer> findMinHeightTrees(int n, int[][] edges) {
         if (n == 1) {
             return Collections.singletonList(0);
         }
@@ -50,62 +50,6 @@ public class MinimumTreeHeights {
         return new ArrayList<>(leaves);
     }
 
-
-    public static List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        HashMap<Integer, Node> graph = getGraph(n, edges);
-        while (n > 2) {
-            HashSet<Integer> delNodes = new HashSet<Integer>();
-            for(Node node : graph.values()) // put all leaf node to delNode
-                if(node.neighbors.size() == 1)
-                    delNodes.add(node.value);
-            for(Node node : graph.values()) // if a node's neighbor has leaf node, then delete the leaf node
-                for(int delNode : delNodes)
-                    node.neighbors.remove(delNode);
-            for(int delNode : delNodes) {   // remove the leaf node
-                graph.remove(delNode);
-                n--;
-            }
-        }
-        List<Integer> list = new ArrayList<Integer>();
-        for(int node : graph.keySet())
-            list.add(node);
-        return list;
-    }
-
-    // convert edge graph to hashmap graph
-    public static HashMap<Integer, Node> getGraph(int n, int[][] edges) {
-        HashMap<Integer, Node> graph = new HashMap<Integer, Node>();
-        for(int[] edge : edges) {
-            Node node = graph.get(edge[0]);
-            if(node == null) {
-                node = new Node(edge[0]);
-                graph.put(edge[0], node);
-            }
-            node.neighbors.add(edge[1]);
-            node = graph.get(edge[1]);
-            if(node == null) {
-                node = new Node(edge[1]);
-                graph.put(edge[1], node);
-            }
-            node.neighbors.add(edge[0]);
-        }
-        return graph;
-    }
-
-    private static class Node {
-        int value;
-        HashSet<Integer> neighbors;
-
-        public Node(int value) {
-            neighbors = new HashSet<Integer>();
-            this.value = value;
-        }
-
-        public void add(int neighbor) {
-            neighbors.add(neighbor);
-        }
-    }
-
     public static void main(String[] args) {
         int[][] edges = {
                 {0, 3},
@@ -115,7 +59,7 @@ public class MinimumTreeHeights {
                 {5, 4}
         };
         int n = 6;
-        System.out.println(findMinHeightTrees2(n, edges));
+        System.out.println(findMinHeightTrees(n, edges));
 
 
     }
