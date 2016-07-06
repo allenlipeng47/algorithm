@@ -20,7 +20,7 @@ public class MergeInterval {
     public static List<Interval> mergeLambda(List<Interval> intervals) {
         List<Interval> ans = new ArrayList<>();
         int i = 0, len = intervals.size();
-        Collections.sort(ans, (p1, p2) -> {return p1.start - p2.start;});
+        Collections.sort(intervals, (p1, p2) -> {return p1.start - p2.start;});
         while (i < len) {
             int currStart = intervals.get(i).start;
             int currEnd = intervals.get(i++).end;
