@@ -8,7 +8,7 @@ package com.pli.project.algorithm.leetcode;
 public class PalindromeNumber {
 
     public static boolean isPalindrome(int x) {
-        if (x < 0 || x != 0 && x % 10 == 0) {
+        if (x < 0 || x != 0 && x % 10 == 0) {   // any number like 10, 20, 1210 are not palindrome number.
             return false;
         }
         int sum = 0;
