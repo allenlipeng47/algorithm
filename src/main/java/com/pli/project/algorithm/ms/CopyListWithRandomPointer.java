@@ -1,5 +1,8 @@
 package com.pli.project.algorithm.ms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by lipeng on 2016/3/19.
  */
@@ -19,7 +22,7 @@ public class CopyListWithRandomPointer {
         }
     };
 
-     public static RandomListNode copyRandomList(RandomListNode head) {
+     public static RandomListNode copyRandomList2(RandomListNode head) {
         RandomListNode curr = head;
         while (curr != null) {
             RandomListNode copy = new RandomListNode(curr.label);
@@ -50,13 +53,28 @@ public class CopyListWithRandomPointer {
         return ans;
     }
 
+    public static RandomListNode copyRandomList(RandomListNode node) {
+        return copyHelper(node, new HashMap<>());
+    }
+
+    public static RandomListNode copyHelper(RandomListNode head, HashMap<Integer, RandomListNode> hm) {
+        if (head == null) {
+            return null;
+        }
+        if (hm.containsKey(head.label)) {
+            return hm.get(head.label);
+        }
+        RandomListNode node = new RandomListNode(head.label);
+        hm.put(node.label, node);
+        node.next = copyHelper(head.next, hm);
+        node.random = copyHelper(head.random, hm);
+        return node;
+    }
+
+
+
     public static void main(String[] args) {
-        CopyListWithRandomPointer copy = new CopyListWithRandomPointer();
-        RandomListNode l1 = new RandomListNode(1);
-        RandomListNode l2 = new RandomListNode(2);
-        l1.next = l2;
-        RandomListNode ans = copyRandomList(l1);
-        System.out.println();
+        test2();
     }
 
     public static void test1() {
@@ -71,6 +89,21 @@ public class CopyListWithRandomPointer {
         RandomListNode ans = copyRandomList(l1);
         System.out.println();
     }
+
+    public static void test2() {
+        RandomListNode l1 = new RandomListNode(1);
+        RandomListNode l2 = new RandomListNode(2);
+        RandomListNode l3 = new RandomListNode(3);
+        l1.next = l2;
+        l2.next = l3;
+        l1.random = l3;
+        l2.random = l3;
+        l3.random = l1;
+        RandomListNode node = copyRandomList(l1);
+        System.out.println();
+
+    }
+
 
 
 }
