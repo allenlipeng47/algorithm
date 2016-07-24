@@ -274,7 +274,7 @@ public class SuffixTree {
         }
     }
 
-    // the helper class for longest repeated substrig
+    // the helper2 class for longest repeated substrig
     private class LrsRec {
 
         public int startPos;

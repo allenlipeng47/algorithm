@@ -3,10 +3,6 @@ package com.pli.project.algorithm.array;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
-/**
- * Created by lipeng on 2015/12/12.
- * Given an array of intervals, merge them to see how many individual intervals totally has
- */
 public class KthLargestElement {
 
     public static int getKthLargest(int[] arr, int k) {
@@ -52,7 +48,7 @@ public class KthLargestElement {
 
     public static void main(String[] args) {
         int[] arr = {49, 38, 65, 97, 76, 13, 27, 49};
-        System.out.println(getKthLargest2(arr, 3));
+        System.out.println(getKthLargest2(arr, 1));
     }
 
 

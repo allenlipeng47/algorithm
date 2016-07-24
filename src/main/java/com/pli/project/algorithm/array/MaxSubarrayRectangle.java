@@ -13,7 +13,7 @@ public class MaxSubarrayRectangle {
         for (int left = 0; left < col; left++) {
             helperArr = new int[col];
             for (int right = left; right < col; right++) {
-                // update helper
+                // update helper2
                 for (int i = 0; i < row; i++) {
                     helperArr[i] += arr[i][right];
                 }

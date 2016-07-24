@@ -1,10 +1,9 @@
-package com.pli.project.algorithm.practice;
+package com.pli.project.algorithm;
 
 /**
  * Created by lipeng on 2016/5/2.
- * Kth largest element
  */
-public class QuickSelect {
+public class TestQuickSelect {
 
     public static int partition(int[] arr, int lo, int hi) {
         int i = lo, j = hi, pivot = arr[lo];
@@ -41,9 +40,8 @@ public class QuickSelect {
     }
 
     public static void main(String[] args) {
-//        int[] arr = {3, 2, 1, 4, 5, 6};
-        int[] arr = {2, 2, 1};
-        System.out.println(quickSelect(arr, 2));
+        int[] arr = {3, 2, 1, 4, 5, 6};
+        System.out.println(quickSelect(arr, 1));
     }
 
 }

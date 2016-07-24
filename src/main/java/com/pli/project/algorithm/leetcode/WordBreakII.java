@@ -42,7 +42,7 @@ public class WordBreakII {
         return helper(s, wordDict, new HashMap<>());
     }
 
-    // the helper returns a result list. Put this list into hashmap. This can help to memorize the result.
+    // the helper2 returns a result list. Put this list into hashmap. This can help to memorize the result.
     public static List<String> helper(String s, Set<String> wordDict, Map<String, List<String>> mem) {
         if (mem.containsKey(s)) {
             return mem.get(s);
