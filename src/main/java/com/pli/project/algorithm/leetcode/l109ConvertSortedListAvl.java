@@ -48,11 +48,11 @@ public class l109ConvertSortedListAvl {
             return null;
         }
         int mid = n >> 1;
-        TreeNode left = helper(mid);
+        TreeNode left = helper(mid);    // left part
         TreeNode node = new TreeNode(head.val);
         head = head.next;
         node.left = left;
-        node.right = helper(n - mid - 1);;
+        node.right = helper(n - mid - 1);   // right part
         return node;
     }
 
