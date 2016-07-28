@@ -23,9 +23,6 @@ public class l106ConstructBstInorderPostorder {
     }
 
     private static TreeNode helper(int[] inorder, int[] postorder, int inStart, int inEnd, int postStart, int postEnd, HashMap<Integer, Integer> hm) {
-        if (inStart == inEnd) {
-            return new TreeNode(inorder[inStart]);
-        }
         if (inStart > inEnd) {
             return null;
         }
