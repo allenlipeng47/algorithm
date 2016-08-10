@@ -57,15 +57,15 @@ public class CopyListWithRandomPointer {
         return copyHelper(node, new HashMap<>());
     }
 
-    public static RandomListNode copyHelper(RandomListNode head, HashMap<Integer, RandomListNode> hm) {
+    public static RandomListNode copyHelper(RandomListNode head, Map<RandomListNode, RandomListNode> hm) {
         if (head == null) {
             return null;
         }
-        if (hm.containsKey(head.label)) {
-            return hm.get(head.label);
+        if (hm.containsKey(head)) {
+            return hm.get(head);
         }
         RandomListNode node = new RandomListNode(head.label);
-        hm.put(node.label, node);
+        hm.put(head, node);
         node.next = copyHelper(head.next, hm);
         node.random = copyHelper(head.random, hm);
         return node;
