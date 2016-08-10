@@ -31,7 +31,7 @@ public class l81SearchInRotatedArrayII {
                 }
             }
             else {  // right side is longer
-                if (nums[mid] > target && target <= nums[right]) {  // to right
+                if (nums[mid] < target && target <= nums[right]) {  // to right
                     left = mid + 1;
                 }
                 else {
