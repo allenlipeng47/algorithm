@@ -16,17 +16,10 @@ public class LetterCombinationOfPhoneNumber {
         }
         List<String> ans = new ArrayList<>();
         ans.add("");
+        String[] mapping = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         Map<Character, String> hm = new HashMap<>();
-        hm.put('2', "abc");
-        hm.put('3', "def");
-        hm.put('4', "ghi");
-        hm.put('5', "jkl");
-        hm.put('6', "mno");
-        hm.put('7', "pqrs");
-        hm.put('8', "tuv");
-        hm.put('9', "wxyz");
         for (int i = 0; i < digits.length(); i++) {
-            ans = addLetters(ans, hm.get(digits.charAt(i)));
+            ans = addLetters(ans, mapping[digits.charAt(i) - '2']);
         }
         return ans;
     }
