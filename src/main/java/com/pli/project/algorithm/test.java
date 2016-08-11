@@ -15,15 +15,11 @@ public class test {
 
 
     public static void main(String[] args) {
-        TreeMap<Integer, Integer> ts = new TreeMap<>();
-        ts.put(1, 1);
-        ts.put(2, 2);
-        ts.put(3, 3);
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        System.out.println(hm.get(null));
-
-
-
+        LinkedList l = new LinkedList();
+        l.add(1);
+        l.add(2);
+        l.addLast(3);
+        System.out.println(l);
     }
 
 }
