@@ -3,35 +3,46 @@ package com.pli.project.algorithm.amz;
 import java.util.Stack;
 
 /**
- * Created by lipeng on 2016/8/10.
+ * Created by lipeng on 2016/8/11.
+ * https://leetcode.com/problems/min-stack/
  */
 public class MinStack {
 
-    Stack<Integer> s;
-    Stack<Integer> minBucket;
+    long min;
+    Stack<Long> stack;
 
     public MinStack() {
-        s = new Stack<>();
-        minBucket = new Stack<>();
-        minBucket.push(Integer.MAX_VALUE);
+        stack = new Stack<>();
     }
 
     public void push(int x) {
-        s.push(x);
-        minBucket.push(Math.min(minBucket.peek(), x));
+        if (stack.size() == 0) {
+            min = x;
+            stack.push(0l);
+        }
+        else {
+            stack.push(x - min);
+            min = Math.min(min, x);
+        }
     }
 
     public void pop() {
-        s.pop();
-        minBucket.pop();
+        long pop = stack.pop();
+        if (pop < 0) {
+            min = min - pop;
+        }
     }
 
     public int top() {
-        return s.peek();
+        long top = stack.peek();
+        if (top < 0) {
+            return (int)min;
+        }
+        return (int)(top + min);
     }
 
     public int getMin() {
-        return minBucket.peek();
+        return (int)min;
     }
 
 }
