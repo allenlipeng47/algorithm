@@ -38,9 +38,9 @@ public class RandomizedSet {
         if (!loc.containsKey(val)) {
             return false;
         }
-        int pos = loc.remove(val);
-        int lastEle = list.remove(list.size() - 1);
-        if (pos != list.size()) {
+        int pos = loc.remove(val);  // remove loc
+        int lastEle = list.remove(list.size() - 1); // remove list
+        if (pos != list.size()) {   // update list and set
             list.set(pos, lastEle);
             loc.put(lastEle, pos);
         }
