@@ -37,7 +37,7 @@ public class SummaryRanges {
             tm.remove(hi.getKey());
         }
         else if (lo != null && val <= lo.getValue().end + 1) {  // add to right or eliminate exception1
-            lo.getValue().end = Math.max(val + 1, lo.getValue().end);
+            lo.getValue().end = Math.max(val, lo.getValue().end);
         }
         else if (hi != null && val + 1 == hi.getValue().start) {    // add to left
             Interval interval = new Interval(hi.getValue().start - 1, hi.getValue().end);
