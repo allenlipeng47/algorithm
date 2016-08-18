@@ -14,7 +14,7 @@ public class SlidingWindowMaximumSlidingWindowMaximum {
             return new int[0];
         }
         int[] ans = new int[nums.length - k + 1];
-        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        ArrayDeque<Integer> queue = new ArrayDeque();
         for (int i = 0; i < nums.length; i++) {
             while (!queue.isEmpty() && queue.getLast() < nums[i]) {
                 queue.removeLast();
