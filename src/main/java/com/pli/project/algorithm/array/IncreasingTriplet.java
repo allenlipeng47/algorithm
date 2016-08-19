@@ -29,10 +29,10 @@ public class IncreasingTriplet {
     public static boolean increasingTriplet(int[] nums) {
         int firstMin = Integer.MAX_VALUE, secondMin = Integer.MAX_VALUE;
         for (int i : nums) {
-            if (i < firstMin) {
+            if (i <= firstMin) {
                 firstMin = i;
             }
-            else if (i < secondMin) {
+            else if (i <= secondMin) {
                 secondMin = i;
             }
             else {
@@ -47,7 +47,8 @@ public class IncreasingTriplet {
 //        int[] nums = {1,2,3,1,2,1};
 //        int[] nums = {2, 1, 5, 0, 3};
 //        int[] nums = {1, 0, 0, 1};
-        int[] nums = {5, 1, 5, 5, 2, 5, 4};
+//        int[] nums = {5, 1, 5, 5, 2, 5, 4};
+        int[] nums = {1, 2, 2};
         System.out.println(increasingTriplet(nums));
     }
 
