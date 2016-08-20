@@ -16,10 +16,10 @@ public class CountDigitOne {
     public int countDigitOne(int n) {
         int ans = 0;
         for (long k = 1; k <= n; k *= 10) {
-            long left = n / k;
-            long mid = left % 10;
-            long right = n - left * k;
-            left = left / 10;
+            long tmp = n / k;
+            long mid = tmp % 10;
+            long right = n - tmp * k;
+            long left = tmp / 10;
             ans += left * k;
             if (mid > 1) {
                 ans += k;
