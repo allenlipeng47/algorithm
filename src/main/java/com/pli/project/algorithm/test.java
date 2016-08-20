@@ -15,6 +15,13 @@ public class test {
 
 
     public static void main(String[] args) {
+        Deque<Integer> queue = new ArrayDeque<>();
+        queue.addLast(2);
+        queue.addFirst(1);
+
     }
+
+
+
 
 }
