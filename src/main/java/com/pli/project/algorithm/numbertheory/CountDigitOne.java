@@ -18,22 +18,19 @@ public class CountDigitOne {
             mid = tmp - tmp / 10 * 10;
             right = n - tmp * unit;
             ans += left * unit;
-            switch (mid) {
-                case 0:
-                    break;
-                case 1:
-                    ans += right + 1;
-                    break;
-                default:
-                    ans += unit;
-            } // switch
+            if (mid > 1) {
+                ans += unit;
+            }
+            else if (mid == 1) {
+                ans += right + 1;
+            }
         }
         return ans;
     }
 
 
     public static void main(String[] args) {
-        System.out.println(countDigitOne(101));
+        System.out.println(countDigitOne(3210));
     }
 
 }
