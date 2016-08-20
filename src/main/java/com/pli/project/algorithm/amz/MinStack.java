@@ -8,41 +8,42 @@ import java.util.Stack;
  */
 public class MinStack {
 
-    long min;
-    Stack<Long> stack;
+    Stack<Integer> stack;
+    int min;
 
+    /** initialize your data structure here. */
     public MinStack() {
         stack = new Stack<>();
+        min = 0;
     }
 
     public void push(int x) {
-        if (stack.size() == 0) {
+        if (stack.isEmpty()) {
+            stack.push(0);
             min = x;
-            stack.push(0l);
+            return;
         }
-        else {
-            stack.push(x - min);
-            min = Math.min(min, x);
-        }
+        stack.push(x - min);
+        min = Math.min(x, min);
     }
 
     public void pop() {
-        long pop = stack.pop();
+        int pop = stack.pop();
         if (pop < 0) {
             min = min - pop;
         }
     }
 
     public int top() {
-        long top = stack.peek();
-        if (top < 0) {
-            return (int)min;
+        int pop = stack.peek();
+        if (pop < 0) {
+            return min;
         }
-        return (int)(top + min);
+        return pop + min;
     }
 
     public int getMin() {
-        return (int)min;
+        return min;
     }
 
 }
