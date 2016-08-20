@@ -13,6 +13,7 @@ public class PatchingArrayTest {
         assert p.minPatches(new int[]{1, 5, 10}, 20) == 2;
         assert p.minPatches(new int[]{1, 2, 2}, 5) == 0;
         assert p.minPatches(new int[]{1, 3}, 6) == 1;
+        System.out.println(p.minPatches(new int[]{1, 2, 1}, 5));
     }
 
 }
