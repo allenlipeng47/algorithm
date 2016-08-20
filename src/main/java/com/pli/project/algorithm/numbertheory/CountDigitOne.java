@@ -30,7 +30,7 @@ public class CountDigitOne {
 
 
     public static void main(String[] args) {
-        System.out.println(countDigitOne(3210));
+        System.out.println(countDigitOne(11));
     }
 
 }
