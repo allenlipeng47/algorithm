@@ -15,9 +15,11 @@ public class test {
 
 
     public static void main(String[] args) {
-        Deque<Integer> queue = new ArrayDeque<>();
-        queue.addLast(2);
-        queue.addFirst(1);
+        Stack<Integer> s = new Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        s.forEach(p -> System.out.println(p));
 
     }
 
