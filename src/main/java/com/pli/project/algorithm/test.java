@@ -5,6 +5,8 @@ import com.pli.project.algorithm.util.TreeNode;
 import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 import sun.awt.IconInfo;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.math.BigInteger;
 import java.util.*;
 
@@ -13,13 +15,15 @@ import java.util.*;
  */
 public class test {
 
+    private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     public static void main(String[] args) {
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        s.forEach(p -> System.out.println(p));
+        System.setOut(new PrintStream(outContent));
+        System.out.println("aaa");
+        if (outContent.toString().equals("aaa")) {
+
+        }
+        System.out.println(outContent.toString());
 
     }
 
