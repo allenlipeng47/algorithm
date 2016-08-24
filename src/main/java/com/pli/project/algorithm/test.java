@@ -15,15 +15,9 @@ import java.util.*;
  */
 public class test {
 
-    private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
     public static void main(String[] args) {
-        System.setOut(new PrintStream(outContent));
-        System.out.println("aaa");
-        if (outContent.toString().equals("aaa")) {
-
-        }
-        System.out.println(outContent.toString());
+        int[] arr = {1, 2, 3};
+        PriorityQueue<Integer> p = new PriorityQueue<>((p1, p2) -> arr[p1] - arr[p2]);
 
     }
 
