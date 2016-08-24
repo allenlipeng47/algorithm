@@ -16,8 +16,8 @@ import java.util.*;
 public class test {
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3};
-        PriorityQueue<Integer> p = new PriorityQueue<>((p1, p2) -> arr[p1] - arr[p2]);
+        char[] chs = {'a', 'b', 'c'};
+        System.out.println(new String(chs));
 
     }
 
