@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by lipeng on 2015/12/12.
@@ -16,9 +17,8 @@ import java.util.*;
 public class test {
 
     public static void main(String[] args) {
-        char[] chs = {'a', 'b', 'c'};
-        System.out.println(new String(chs));
-
+        int[] num = {1};
+        System.out.println(Arrays.binarySearch(num, 0, 1, 2));
     }
 
 
