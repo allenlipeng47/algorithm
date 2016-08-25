@@ -17,8 +17,10 @@ import java.util.concurrent.BlockingQueue;
 public class test {
 
     public static void main(String[] args) {
-        int[] num = {1};
-        System.out.println(Arrays.binarySearch(num, 0, 1, 2));
+        StringBuilder sb = new StringBuilder();
+        sb.append(1);
+        sb.append(2);
+        System.out.println(sb.toString());
     }
 
 
