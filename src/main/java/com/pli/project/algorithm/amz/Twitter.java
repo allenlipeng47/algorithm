@@ -3,82 +3,71 @@ package com.pli.project.algorithm.amz;
 import java.util.*;
 
 /**
- * Created by lipeng on 2016/8/15.
- * https://leetcode.com/problems/design-twitter/
- * Each user has a tweet list. The tweet is a linkedlist.
- * User should follow user itself.
- * When get a user's feed, 1st should get all the tweet of each followed user. Then use priority queue to pop it.
+ * Created by lipeng on 2016/8/24.
  */
 public class Twitter {
 
-    public static int timestamp = 0;
+    static int timestamp = 0;
 
-    class Tweet {
+    static class Tweet {
         int tweetId;
         int timestamp;
         Tweet next;
-        public Tweet(int tweetId, int timestamp) {
+        public Tweet(int tweetId) {
             this.tweetId = tweetId;
-            this.timestamp = timestamp;
+            this.timestamp = timestamp++;
         }
     }
 
-    class User {
+    static class User {
         int userId;
-        Set<Integer> followList;
-        Tweet tweetHead;
+        Tweet tweet;
+        public Set<User> follow;
 
         public User(int userId) {
             this.userId = userId;
-            followList = new HashSet<>();
-            follow(userId);
+            follow = new HashSet<>();
+            follow(this);
         }
 
-        public void follow(int followId) {
-            followList.add(followId);
+        public void follow(User followee) {
+            follow.add(followee);
         }
 
-        public void unfollow(int followId) {
-            followList.remove(followId);
+        public void unfloow(User followee) {
+            follow.remove(followee);
         }
 
-        public void postTweet(int tweetId) {
-            Tweet tweet = new Tweet(tweetId, timestamp++);
-            tweet.next = tweetHead;
-            tweetHead = tweet;
+        public void post(Tweet tweet) {
+            tweet.next = this.tweet;
+            this.tweet = tweet;
         }
 
     }
 
-    Map<Integer, User> users;
+    Map<Integer, User> map;
 
     /** Initialize your data structure here. */
     public Twitter() {
-        users = new HashMap<>();
+        map = new HashMap<>();
     }
 
     /** Compose a new tweet. */
     public void postTweet(int userId, int tweetId) {
-        if (!users.containsKey(userId)) {
-            users.put(userId, new User(userId));
-        }
-        users.get(userId).postTweet(tweetId);
+        map.putIfAbsent(userId, new User(userId));
+        Tweet tweet = new Tweet(tweetId);
+        map.get(userId).post(tweet);
     }
 
     /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
     public List<Integer> getNewsFeed(int userId) {
-        Queue<Tweet> queue = new PriorityQueue<>((t1, t2) -> t2.timestamp - t1.timestamp);
-        if (!users.containsKey(userId)) {
-            return new ArrayList<>();
-        }
         List<Integer> feed = new ArrayList<>();
-        for (Integer followee : users.get(userId).followList) {
-            Tweet tweet = users.get(followee).tweetHead;
-            if (tweet != null) {
-                queue.add(tweet);
-            }
+        if (!map.containsKey(userId)) {
+            return feed;
         }
-        for (int i = 0; i < 10 && !queue.isEmpty(); i++) {
+        Queue<Tweet> queue = new PriorityQueue<>((p1, p2) -> p2.timestamp - p1.timestamp);
+        map.get(userId).follow.stream().filter(user -> user.tweet != null).forEach(user -> queue.add(user.tweet));
+        for (int i = 0; !queue.isEmpty() && i < 10; i++) {
             Tweet tweet = queue.poll();
             feed.add(tweet.tweetId);
             if (tweet.next != null) {
@@ -90,21 +79,17 @@ public class Twitter {
 
     /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
     public void follow(int followerId, int followeeId) {
-        if (!users.containsKey(followerId)) {
-            users.put(followerId, new User(followerId));
-        }
-        if (!users.containsKey(followeeId)) {
-            users.put(followeeId, new User(followeeId));
-        }
-        users.get(followerId).follow(followeeId);
+        map.putIfAbsent(followeeId, new User(followeeId));
+        map.putIfAbsent(followerId, new User(followerId));
+        map.get(followerId).follow(map.get(followeeId));
     }
 
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
     public void unfollow(int followerId, int followeeId) {
-        if (!users.containsKey(followerId) || followeeId == followerId) {
+        if (!map.containsKey(followerId)) {
             return;
         }
-        users.get(followerId).unfollow(followeeId);
+        map.get(followerId).unfloow(map.get(followeeId));
     }
 
 }
