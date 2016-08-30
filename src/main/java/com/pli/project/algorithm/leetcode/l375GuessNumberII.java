@@ -6,7 +6,7 @@ package com.pli.project.algorithm.leetcode;
  * dp[i][j] = min (i<=k<=j) { k + max(dp[i][k-1], dp[k+1][j]) }
  * The goal is to calculate dp[1][n]
  */
-public class GuessNumberII {
+public class l375GuessNumberII {
 
     public static int getMoneyAmount(int n) {
         int[][] dp = new int[n + 1][n + 1];
