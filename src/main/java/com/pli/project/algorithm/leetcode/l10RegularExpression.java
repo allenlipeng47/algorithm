@@ -23,14 +23,14 @@ public class l10RegularExpression {
                     dp[i][j] = dp[i - 1][j - 1] && p.charAt(i) == s.charAt(j);
                 }
             }
-            else {
+            else {  // handle with '*'
                 int j = 0;
                 while (j < s.length()) {
-                    dp[i][j] = dp[i - 1][j] || (i >= 2 && dp[i - 2][j]);
-                    if (!dp[i][j++]) {
+                    dp[i][j] = dp[i - 1][j] || (i >= 2 && dp[i - 2][j]);    // test if true from p[i - 1] or p[i - 2]
+                    if (!dp[i][j++]) {  // quite loop
                         continue;
                     }
-                    while (j < s.length()) {
+                    while (j < s.length()) { // loop T to right side
                         if (p.charAt(i - 1) != s.charAt(j) && p.charAt(i - 1) != '.') {
                             break;
                         }
