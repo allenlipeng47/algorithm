@@ -5,6 +5,7 @@ import java.util.Random;
 /**
  * Created by lipeng on 2016/8/30.
  * https://leetcode.com/problems/shuffle-an-array/
+ * Loop i from 0 to n - 1. For element i, swap i with any element in [0,...,i]
  */
 public class l384Shuffling {
 
