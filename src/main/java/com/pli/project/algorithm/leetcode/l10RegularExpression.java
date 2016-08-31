@@ -24,19 +24,11 @@ public class l10RegularExpression {
                 }
             }
             else {  // handle with '*'
-                int j = 0;
-                while (j < s.length()) {
-                    dp[i][j] = dp[i - 1][j] || (i >= 2 && dp[i - 2][j]);    // test if true from p[i - 1] or p[i - 2]
-                    if (!dp[i][j++]) {  // quite loop
-                        continue;
-                    }
-                    while (j < s.length()) { // loop T to right side
-                        if (p.charAt(i - 1) != s.charAt(j) && p.charAt(i - 1) != '.') {
-                            break;
-                        }
-                        dp[i][j++] = true;  // when p[i - 1] == s[j] or p[i - 1] is '.'
-                    }
-                }   // while
+                for (int j = 0; j < s.length(); j++) {
+                    boolean fromTop = dp[i - 1][j] || (i > 1 && dp[i - 2][j]);
+                    boolean fromLeft = j > 0 && dp[i][j - 1] && (p.charAt(i - 1) == '.' || p.charAt(i - 1) == s.charAt(j));
+                    dp[i][j] = fromTop || fromLeft;
+                }
             }
         }
         return dp[p.length() - 1][s.length() - 1];
