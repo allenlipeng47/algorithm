@@ -21,7 +21,9 @@ public class l387FirstUniqueCharInString {
         }
         int ans = -1;
         for (int i = 0; i < firstTime.length; i++) {    // for elements which only show 1 time, get the smallest position.
-            ans = (count[i] == 1 && firstTime[i] < ans) ? firstTime[i] : ans;
+            if (count[i] == 1 && firstTime[i] < ans) {
+                ans = firstTime[i];
+            }
         }
         return ans;
     }
