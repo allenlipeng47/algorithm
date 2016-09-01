@@ -16,9 +16,6 @@ public class l163SumClosest {
             while (left < right) {
                 int sum = nums[i] + nums[left] + nums[right];
                 ans = Math.abs(sum - target) < Math.abs(ans - target) ? sum : ans;
-                if (ans == target) {
-                    return ans;
-                }
                 if (sum < target) {
                     left++;
                 }
