@@ -17,10 +17,7 @@ import java.util.concurrent.BlockingQueue;
 public class test {
 
     public static void main(String[] args) {
-        int[] a = new int[10];
-        int i = 1;
-        a[i++] = 1 + i;
-        System.out.println();
+
     }
 
 
