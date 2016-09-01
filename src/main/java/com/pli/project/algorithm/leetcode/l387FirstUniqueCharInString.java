@@ -13,14 +13,14 @@ public class l387FirstUniqueCharInString {
 
     public int firstUniqChar(String s) {
         int[] firstTime = new int[26], count = new int[26];
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {  // one time loop save the count of each char, and position of first visit.
             char ch = s.charAt(i);
             if (++count[ch - 'a'] == 1) {
                 firstTime[ch - 'a'] = i;
             }
         }
         int ans = -1;
-        for (int i = 0; i < firstTime.length; i++) {
+        for (int i = 0; i < firstTime.length; i++) {    // for elements which only show 1 time, get the smallest position.
             ans = (count[i] == 1 && firstTime[i] < ans) ? firstTime[i] : ans;
         }
         return ans;
