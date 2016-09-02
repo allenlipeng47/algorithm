@@ -13,21 +13,40 @@ public class l25ReverseKGroup {
         ListNode dummy = new ListNode(0), front = head;
         dummy.next = head;
         head = dummy;
-        for (int i = 0; i < k && front != null; i++) {
+        for (int i = 1; i < k && front != null; i++) {
             front = front.next;
         }
         while (front != null && head != null && head.next != null) {
             ListNode tail = head.next, curr = tail.next;
             for (int i = 1; i < k; i++) {
+                front = front == null ? null : front.next;
                 tail.next = curr.next;
                 curr.next = head.next;
                 head.next = curr;
                 curr = tail.next;
-                front = front == null ? null : front.next;
             }
+            front = front == null ? null : front.next;
             head = tail;
         }
         return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
+        ListNode n3 = new ListNode(3);
+//        ListNode n4 = new ListNode(4);
+//        ListNode n5 = new ListNode(5);
+//        ListNode n6 = new ListNode(6);
+//        ListNode n7 = new ListNode(7);
+//        ListNode n8 = new ListNode(8);
+//        ListNode n9 = new ListNode(9);
+//        ListNode n10 = new ListNode(10);
+        n1.next = n2;
+        n2.next = n3;
+// n3.next = n4; n4.next = n5;
+//        n5.next = n6; n6.next = n7; n7.next = n8; n8.next = n9; n9.next = n10;
+        System.out.println(reverseKGroup(n1, 2));
     }
 
     // 1->2->3->4->5->6->7->8->9->10, 4, will return 4->3->2->1->8->7->6->-5>->10->9
@@ -46,22 +65,6 @@ public class l25ReverseKGroup {
             head = tail;
         }
         return dummy.next;
-    }
-
-    public static void main(String[] args) {
-        ListNode n1 = new ListNode(1);
-        ListNode n2 = new ListNode(2);
-        ListNode n3 = new ListNode(3);
-        ListNode n4 = new ListNode(4);
-        ListNode n5 = new ListNode(5);
-        ListNode n6 = new ListNode(6);
-        ListNode n7 = new ListNode(7);
-        ListNode n8 = new ListNode(8);
-        ListNode n9 = new ListNode(9);
-        ListNode n10 = new ListNode(10);
-        n1.next = n2; n2.next = n3; n3.next = n4; n4.next = n5; n5.next = n6;
-        n6.next = n7; n7.next = n8; n8.next = n9; n9.next = n10;
-        System.out.println(reverseKGroup(n1, 4));
     }
 
 }
