@@ -16,7 +16,7 @@ public class l25ReverseKGroup {
         for (int i = 1; i < k && front != null; i++) {
             front = front.next;
         }
-        while (front != null && head != null && head.next != null) {
+        while (front != null) {
             ListNode tail = head.next, curr = tail.next;
             for (int i = 1; i < k; i++) {
                 front = front == null ? null : front.next;
