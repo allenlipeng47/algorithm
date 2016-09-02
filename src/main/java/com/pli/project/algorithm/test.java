@@ -16,21 +16,11 @@ import java.util.concurrent.BlockingQueue;
  */
 public class test {
 
-    public void shuffle(int[] nums) {
-        Random random = new Random();
-        for (int i = 0; i < nums.length; i++) {
-            int j = random.nextInt(i + 1);
-            swap(nums, i, j);
-        }
-    }
-
-    private void swap(int[] nums, int i, int j) {
-        int tmp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = tmp;
-    }
-
     public static void main(String[] args) {
+        System.out.println((int)'a');
+        System.out.println((int)'z');
+        System.out.println((int)'A');
+        System.out.println((int)'Z');
 
     }
 
