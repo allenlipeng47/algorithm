@@ -17,14 +17,30 @@ import java.util.concurrent.BlockingQueue;
 public class test {
 
     public static void main(String[] args) {
-        System.out.println((int)'a');
-        System.out.println((int)'z');
-        System.out.println((int)'A');
-        System.out.println((int)'Z');
+//        Character.getNumericValue()
 
     }
 
 
+    public static int pow(int a, int b) {
+        int ans = 1;
+        while (b > 0) {
+            if (b % 2 == 1) {
+                ans *= a;
+            }
+            b = b >> 1;
+            a *= a;
+        }
+        return ans;
+    }
 
+    public static int gcd(int max, int min) {
+        while (min != 0) {
+            int tmp = min;
+            min = max % min;
+            max = tmp;
+        }
+        return max;
+    }
 
 }
