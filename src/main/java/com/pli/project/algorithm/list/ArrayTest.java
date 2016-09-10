@@ -11,7 +11,7 @@ public class ArrayTest {
 
     public static void test1() {
         boolean[] b = new boolean[10];
-        List<Boolean> list = Arrays.asList(b); // wrong, Arrays.asList doesn't accept primitive array
+//        List<Boolean> list = Arrays.asList(b); // wrong, Arrays.asList doesn't accept primitive array
     }
 
     public static void test2() {
