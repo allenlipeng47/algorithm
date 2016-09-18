@@ -25,7 +25,7 @@ public class WordLadder {
             list = list2;
             ans++;
         }
-        return -1;
+        return 0;
     }
 
     public List<String> getList(Set<String> wordList, Set<String> visited, String word) {
