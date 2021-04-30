@@ -38,6 +38,31 @@ public class lc727 {
         return S.substring(start, end + 1);
     }
 
+    public String minWindow(String S, String T) {
+        int i = 0;
+        int start = 0, end = 0;
+        while (i < S.length()) {
+            while (i < S.length() && S.charAt(i) != T.charAt(0)) {
+                i++;
+            }
+            int iTmp = i, j = 0;
+            while (iTmp < S.length() && j < T.length()) {
+                if (S.charAt(iTmp) == T.charAt(j)) {
+                    iTmp++;
+                    j++;
+                } else {
+                    iTmp++;
+                }
+            }
+            if (j == T.length() && iTmp - i < end - start) {
+                start = i;
+                end = iTmp;
+            }
+            i++;
+        }
+        return S.substring(start, end);
+    }
+    
     public static void main(String[] args) {
         lc727 lc = new lc727();
 //        System.out.println(lc.minWindow("jmeqksfrsdcmsiwvaovztaqenprpvnbstl", "u"));
