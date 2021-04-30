@@ -40,12 +40,14 @@ public class lc727 {
 
     public String minWindow(String S, String T) {
         int i = 0;
-        int start = 0, end = 0;
+        int start = 0, end = Integer.MAX_VALUE / 2;
         while (i < S.length()) {
+            // move to first position where S[i] == T[0]
             while (i < S.length() && S.charAt(i) != T.charAt(0)) {
                 i++;
             }
             int iTmp = i, j = 0;
+            // start to match from S[i], T[0]
             while (iTmp < S.length() && j < T.length()) {
                 if (S.charAt(iTmp) == T.charAt(j)) {
                     iTmp++;
@@ -60,9 +62,12 @@ public class lc727 {
             }
             i++;
         }
+        if (end == Integer.MAX_VALUE / 2) {
+            return "";
+        }
         return S.substring(start, end);
     }
-    
+
     public static void main(String[] args) {
         lc727 lc = new lc727();
 //        System.out.println(lc.minWindow("jmeqksfrsdcmsiwvaovztaqenprpvnbstl", "u"));
